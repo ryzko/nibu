@@ -4,12 +4,14 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:elevation">2dp</item>
         <item name="android:toolbarStyle">@style/ToolbarTheme</item>
         <item name="android:actionBarStyle">@style/ToolbarTheme</item>
+        <item name="android:statusBarColor">@color/secondaryDarkGray</item>
+        <item name="android:textColorPrimary">@color/secondaryDarkGray</item>
     </style>
 
     <!-- Splash Screen theme. -->
