@@ -69,7 +69,7 @@ class LoginActivity : AppCompatActivity() {
     private fun onUserSuccess(user:User){
         userData?.userObj = user;
 
-        startActivity(Intent(this, BabiesListActivity::class.java))
+        startActivity(Intent(this, DashboardActivity::class.java))
 
     }
 

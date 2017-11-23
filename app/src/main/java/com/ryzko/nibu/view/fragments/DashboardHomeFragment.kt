@@ -4,11 +4,20 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridLayout
+import android.widget.LinearLayout
 
 import com.ryzko.nibu.R
+import com.ryzko.nibu.model.UIObjects.HomeListObject
+import com.ryzko.nibu.model.adapters.HomeListAdapter
+import kotlinx.android.synthetic.main.activity_babies_list.*
+import kotlinx.android.synthetic.main.fragment_dashboard_home.*
 
 /**
  * A simple [Fragment] subclass.
@@ -29,15 +38,28 @@ class DashboardHomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            mParam1 = arguments!!.getString(ARG_PARAM1)
+            mParam2 = arguments!!.getString(ARG_PARAM2)
         }
+
+
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the card_view_baby for this fragment
-        return inflater!!.inflate(R.layout.fragment_dashboard_home, container, false)
+
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+
+        val view:View = inflater.inflate(R.layout.fragment_dashboard_home, container, false)
+        val list:List<HomeListObject> = listOf(HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject())
+        val adapter = HomeListAdapter(list)
+        var grid:RecyclerView = view.findViewById(R.id.home_grid)
+
+        grid.layoutManager = GridLayoutManager(context, 2)
+        grid.adapter = adapter
+
+
+
+        return view
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -51,6 +73,9 @@ class DashboardHomeFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             mListener = context
+
+
+
         } else {
             throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
