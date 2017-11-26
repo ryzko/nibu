@@ -1,8 +1,7 @@
 package com.ryzko.nibu.model.api
 
 import android.content.Context
-import android.provider.ContactsContract.CommonDataKinds.StructuredName.PREFIX
-import com.ryzko.nibu.model.*
+import com.ryzko.nibu.model.rest.*
 import com.ryzko.nibu.model.user.UserData
 import io.reactivex.Observable
 
@@ -15,6 +14,7 @@ import io.reactivex.Observable
 class ApiManager private constructor(context: Context) {
 
     private val service = NibuApi().service
+    private var userData:UserData = UserData.getInstance(context)
     private val PREFIX:String = "Bearer "
     private val context:Context = context;
 
@@ -32,33 +32,33 @@ class ApiManager private constructor(context: Context) {
         }
     }
 
-    fun register(registerObj:RegisterObject): Observable<TokenObject> {
+    fun register(registerObj:RegisterObjectData): Observable<TokenObjectData> {
         return service.register(registerObj.name, registerObj.email, registerObj.password, registerObj.passwordConfirmation, registerObj.clientId, registerObj.clientSecret, registerObj.granType).map {
-            result -> TokenObject(result.token_type, result.expires_in, result.access_token, result.refresh_token)
+            result -> TokenObjectData(result.token_type, result.expires_in, result.access_token, result.refresh_token)
         }
     }
 
-    fun login(loginObj:LoginObject): Observable<TokenObject> {
+    fun login(loginObj:LoginObjectData): Observable<TokenObjectData> {
         return service.login(loginObj.email, loginObj.password, loginObj.clientId, loginObj.clientSecret, loginObj.granType).map {
-            result -> TokenObject(result.token_type, result.expires_in, result.access_token, result.refresh_token)
+            result -> TokenObjectData(result.token_type, result.expires_in, result.access_token, result.refresh_token)
         }
     }
 
-    fun addBaby(babyObj:BabyObject): Observable<BabyResponse> {
-        return service.addBaby(PREFIX + UserData.getInstance(this.context).tokenObj!!.access_token, babyObj.name, babyObj.birth_date, babyObj.avatar).map {
-            result -> BabyResponse(result.id, result.sid, result.parent_sid, result.name, result.birth_date, result.avatar)
+    fun addBaby(babyObj:BabyObjectData): Observable<BabyObjectData> {
+        return service.addBaby(PREFIX + userData.tokenObj!!.access_token, babyObj.name, babyObj.birth_date, babyObj.avatar).map {
+            result -> BabyObjectData(result.id, result.sid, result.parent_sid, result.name, result.birth_date, result.avatar)
         }
     }
 
-    fun getAllBabies(): Observable<ArrayList<BabyResponse>> {
-        return service.getAllBabies(PREFIX + UserData.getInstance(this.context).tokenObj!!.access_token)
-                .flatMap { t: ArrayList<BabyResponse> ->  Observable.fromArray(t)}
+    fun getAllBabies(): Observable<ArrayList<BabyObjectData>> {
+        return service.getAllBabies(PREFIX + userData.tokenObj!!.access_token)
+                .flatMap { t: ArrayList<BabyObjectData> ->  Observable.fromArray(t)}
     }
 
 
-    fun user(tokenObj:TokenObject): Observable<User> {
+    fun user(tokenObj:TokenObjectData): Observable<UserObjectData> {
         return service.user(PREFIX + tokenObj.access_token).map { result ->
-            User(result.id, result.name, result.email, result.sid)
+            UserObjectData(result.id, result.name, result.email, result.sid)
         }
     }
 

@@ -1,20 +1,21 @@
 package com.ryzko.nibu.view.activities
 
+import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.BabyResponse
-import com.ryzko.nibu.model.LoginObject
-import com.ryzko.nibu.model.TokenObject
-import com.ryzko.nibu.model.User
-import com.ryzko.nibu.model.api.ApiError
 import com.ryzko.nibu.model.api.ApiManager
+import com.ryzko.nibu.model.rest.LoginObjectData
+import com.ryzko.nibu.model.rest.TokenObjectData
+import com.ryzko.nibu.model.rest.UserObjectData
 import com.ryzko.nibu.model.user.UserData
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_login.*
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,14 +28,16 @@ class LoginActivity : AppCompatActivity() {
 
         apiManager = ApiManager.getInstance(this.applicationContext)
         userData = UserData.getInstance(this.applicationContext)
+        setDrawables()
+
 
         btn_login.setOnClickListener({
-            val loginObj = LoginObject(tv_username.text.toString(),tv_password.text.toString())
+            val loginObj = LoginObjectData(tv_username.text.toString(),tv_password.text.toString())
             apiManager!!.login(loginObj)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
-                        token: TokenObject? ->
+                        token: TokenObjectData? ->
                         if (token != null) {
                             onLoginSuccess(token)
                         }
@@ -48,14 +51,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
-    private fun onLoginSuccess(token: TokenObject){
+
+    private fun onLoginSuccess(token: TokenObjectData){
         userData?.tokenObj = token;
         apiManager!!.user(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
 
-            user: User? ->  if (user != null) onUserSuccess(user)
+            user: UserObjectData? ->  if (user != null) onUserSuccess(user)
         },{
             error: Throwable? -> if (error != null) onRequestFailure(error)
 
@@ -66,10 +70,32 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun onUserSuccess(user:User){
+    private fun onUserSuccess(user:UserObjectData){
         userData?.userObj = user;
 
         startActivity(Intent(this, DashboardActivity::class.java))
+
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
+    }
+
+    private fun setDrawables(){
+
+
+        val loginImg = ContextCompat.getDrawable(this.baseContext,R.drawable.message_96px)
+        val h = loginImg!!.intrinsicHeight
+        val w = loginImg!!.intrinsicWidth
+        loginImg.setBounds(0, 0, 64, 64)
+
+        val passImg = ContextCompat.getDrawable(this.baseContext,R.drawable.key_96px)
+        val h1 = passImg!!.intrinsicHeight
+        val w1 = passImg!!.intrinsicWidth
+        passImg.setBounds(0, 0, 64, 64)
+
+        tv_username.setCompoundDrawables(loginImg, null, null, null)
+        tv_password.setCompoundDrawables(passImg, null, null, null)
 
     }
 

@@ -1,18 +1,13 @@
 package com.ryzko.nibu.model.adapters
 
-import android.content.Context
-import android.support.v7.widget.CardView
-import android.support.v7.widget.PopupMenu
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.BabyResponse
+import com.ryzko.nibu.model.rest.BabyObjectData
 
 /**
  * Created by Marcin Ryzko on 20.11.2017.
@@ -20,7 +15,7 @@ import com.ryzko.nibu.model.BabyResponse
  * http://ryzko.com
  */
 
-class BabiesListAdapter(val list:List<BabyResponse>):RecyclerView.Adapter<BabiesListAdapter.ViewHolder>() {
+class BabiesListAdapter(val list:List<BabyObjectData>):RecyclerView.Adapter<BabiesListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BabiesListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_view_baby, parent, false)
@@ -38,7 +33,7 @@ class BabiesListAdapter(val list:List<BabyResponse>):RecyclerView.Adapter<Babies
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bindItems(data: BabyResponse) {
+        fun bindItems(data: BabyObjectData) {
             val babyName: TextView = itemView.findViewById(R.id.tv_baby_name)
             val babyBirth: TextView = itemView.findViewById(R.id.tv_baby_bitrh)
             babyName.text = data.name

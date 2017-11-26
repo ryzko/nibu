@@ -1,5 +1,6 @@
 package com.ryzko.nibu.view.activities
 
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -17,6 +18,7 @@ import com.ryzko.nibu.view.fragments.DashboardUserFragment
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_dashboard.*
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentInteractionListener, DashboardUserFragment.OnFragmentInteractionListener, DashboardSettingsFragment.OnFragmentInteractionListener  {
 
@@ -34,17 +36,17 @@ class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentI
         when (item.itemId) {
 
             R.id.navigation_home -> {
-                message.setText(R.string.title_home)
+                //message.setText(R.string.title_home)
                 selectedFragment = DashboardHomeFragment.newInstance()
                // return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_user -> {
-                message.setText(R.string.title_user)
+                //message.setText(R.string.title_user)
                 selectedFragment = DashboardUserFragment.newInstance()
                // return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
-                message.setText(R.string.title_settings)
+               // message.setText(R.string.title_settings)
                 selectedFragment = DashboardSettingsFragment.newInstance()
               //  return@OnNavigationItemSelectedListener true
             }
@@ -72,8 +74,13 @@ class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentI
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
         replaceFragment(DashboardHomeFragment.newInstance())
+        setSupportActionBar(toolbar)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
+    }
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 }

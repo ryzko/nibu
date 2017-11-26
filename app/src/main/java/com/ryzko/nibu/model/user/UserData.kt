@@ -3,6 +3,8 @@ package com.ryzko.nibu.model.user
 import android.content.Context
 import com.ryzko.nibu.model.TokenObject
 import com.ryzko.nibu.model.User
+import com.ryzko.nibu.model.rest.TokenObjectData
+import com.ryzko.nibu.model.rest.UserObjectData
 
 /**
  * Created by Marcin Ryzko on 19.11.2017.
@@ -12,8 +14,8 @@ import com.ryzko.nibu.model.User
 
 class UserData private constructor(context: Context) {
 
-    var userObj:User? = null;
-    var tokenObj:TokenObject? = null
+    var userObj:UserObjectData? = null;
+    var tokenObj:TokenObjectData? = null
 
     companion object {
         private var instance: UserData? = null

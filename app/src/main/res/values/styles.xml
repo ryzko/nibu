@@ -1,17 +1,17 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="android:elevation">2dp</item>
         <item name="android:toolbarStyle">@style/ToolbarTheme</item>
         <item name="android:actionBarStyle">@style/ToolbarTheme</item>
-        <item name="android:statusBarColor">@color/secondaryDarkGray</item>
-        <item name="android:textColorPrimary">@color/secondaryDarkGray</item>
+
+        <item name="android:textColorPrimary">@color/darkerGray</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowActionBar">true</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -20,9 +20,10 @@
     </style>
 
     <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
-        <item name="android:background">@color/colorToolbar</item>
-        <item name="android:colorBackground">@color/colorToolbar</item>
-        <item name="colorPrimary">@color/colorToolbar</item>
+
+        <item name="android:background">@color/primaryLightColor</item>
+        <item name="android:colorBackground">@color/primaryLightColor</item>
+        <item name="colorPrimary">@color/primaryLightColor</item>
         <item name="android:textColorSecondary">@color/colorToolbar</item>
         <item name="theme">@style/NibuToolbarTheme</item>
     </style>

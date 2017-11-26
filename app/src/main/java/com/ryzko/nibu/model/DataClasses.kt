@@ -30,3 +30,23 @@ data class User(val id:Int, val name:String, val email:String, val sid:String)
 
 data class BabyObject(val name:String, val birth_date:String, val avatar:String)
 data class BabyResponse(val id:Int,val sid:String, val parent_sid:String, val name:String, val birth_date:String, val avatar:String)
+data class RoutineFoodObject(val type:String, //breast, solid, bottle
+                             val breast_side:String, //left, right
+                             val breast_time:String, //min?sec?
+                             val bottle_milk_type:String,//breast, formula
+                             val start_time:String, //2017-11-25 14:20
+                             val end_time:String, //2017-11-25 14:50
+                             val volume:Int,//150 ml
+                             val weight:Int) //120 g
+
+data class RoutineFoodResult(val id:Int, //breast, solid, bottle
+                             val baby_id:Int, //breast, solid, bottle
+                             val baby_sid:String, //breast, solid, bottle
+                             val type:String, //breast, solid, bottle
+                             val breast_side:String, //left, right
+                             val breast_time:String, //min?sec?
+                             val bottle_milk_type:String,//breast, formula
+                             val start_time:String, //2017-11-25 14:20
+                             val end_time:String, //2017-11-25 14:50
+                             val volume:Int,//150 ml
+                             val weight:Int) //120 g

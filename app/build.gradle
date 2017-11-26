@@ -56,10 +56,13 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.3.1"
 
     implementation "io.reactivex:rxkotlin:2.0.0-RC1"
-
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
 
 
     implementation "com.github.bumptech.glide:glide:4.3.1"
     annotationProcessor "com.github.bumptech.glide:compiler:4.3.1"
+
+    implementation 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2'
+    implementation 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
 }

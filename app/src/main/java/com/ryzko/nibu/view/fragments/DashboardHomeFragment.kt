@@ -5,19 +5,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
-import android.widget.LinearLayout
 
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.UIObjects.HomeListObject
+import com.ryzko.nibu.model.uiobjects.HomeListObject
 import com.ryzko.nibu.model.adapters.HomeListAdapter
-import kotlinx.android.synthetic.main.activity_babies_list.*
-import kotlinx.android.synthetic.main.fragment_dashboard_home.*
 
 /**
  * A simple [Fragment] subclass.
@@ -50,11 +45,11 @@ class DashboardHomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view:View = inflater.inflate(R.layout.fragment_dashboard_home, container, false)
-        val list:List<HomeListObject> = listOf(HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject())
+        val list:List<HomeListObject> = listOf(HomeListObject("food"), HomeListObject("diaper"), HomeListObject("sleep"), HomeListObject("play"), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject())
         val adapter = HomeListAdapter(list)
         var grid:RecyclerView = view.findViewById(R.id.home_grid)
 
-        grid.layoutManager = GridLayoutManager(context, 2)
+        grid.layoutManager = GridLayoutManager(context, 3)
         grid.adapter = adapter
 
 
