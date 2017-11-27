@@ -11,7 +11,7 @@ data class FoodRoutineObjectData (val id:Int, //breast, solid, bottle
                                   val baby_sid:String, //breast, solid, bottle
                                   val type:String, //breast, solid, bottle
                                   val breast_side:String, //left, right
-                                  val breast_time:String, //min?sec?
+                                  val breastfeeding_time_minutes:String, //min?sec?
                                   val bottle_milk_type:String,//breast, formula
                                   val start_time:String, //2017-11-25 14:20
                                   val end_time:String, //2017-11-25 14:50

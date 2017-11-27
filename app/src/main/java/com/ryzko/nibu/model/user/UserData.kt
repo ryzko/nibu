@@ -1,8 +1,6 @@
 package com.ryzko.nibu.model.user
 
 import android.content.Context
-import com.ryzko.nibu.model.TokenObject
-import com.ryzko.nibu.model.User
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
 
