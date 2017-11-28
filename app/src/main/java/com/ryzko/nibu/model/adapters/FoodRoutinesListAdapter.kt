@@ -19,11 +19,16 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
     private var sections:List<Section> = listOf()
     class Section(var date:String, var list:List<FoodRoutineObjectData>)
 
+
+    init {
+        cutToSections(this.list)
+    }
+
     override fun getItemCount(): Int {
         return list.size
     }
 
-    fun cutToSections(){
+    fun cutToSections(list:List<FoodRoutineObjectData>){
 
     }
 
