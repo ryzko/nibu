@@ -2,6 +2,7 @@ package com.ryzko.nibu.model.api
 
 import android.content.Context
 import com.ryzko.nibu.model.rest.*
+import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import com.ryzko.nibu.model.user.UserData
 import io.reactivex.Observable
 
@@ -60,6 +61,39 @@ class ApiManager private constructor(context: Context) {
         return service.user(PREFIX + tokenObj.access_token).map { result ->
             UserObjectData(result.id, result.name, result.email, result.sid)
         }
+    }
+
+    fun addFoodRoutine(foodyObj:FoodRoutineObjectData): Observable<FoodRoutineObjectData> {
+        return service.addFoodRoutine(PREFIX + userData.tokenObj!!.access_token,
+                baby_sid = foodyObj.baby_sid,
+                type = foodyObj.type,
+                breast_side = foodyObj.breast_side,
+                breastfeeding_time_minutes = foodyObj.breastfeeding_time_minutes,
+                bottle_milk_type = foodyObj.bottle_milk_type,
+                start_time = foodyObj.start_time,
+                end_time = foodyObj.end_time,
+                volume = foodyObj.volume.toString(),
+                weight = foodyObj.weight.toString()
+                ).map {
+            result -> FoodRoutineObjectData(result.id,
+                result.baby_id,
+                result.baby_sid,
+                result.type,
+                result.breast_side,
+                result.breastfeeding_time_minutes,
+                result.bottle_milk_type,
+                result.start_time, result.end_time,
+                result.volume,
+                result.weight)
+        }
+    }
+
+
+    fun getAllFoodRoutines(): Observable<ArrayList<FoodRoutineObjectData>> {
+        val token:String = PREFIX + userData.tokenObj!!.access_token
+        val babySID:String = userData.selectedBaby!!.sid
+        return service.getAllFoodRoutines(token, babySID)
+                .flatMap { t: ArrayList<FoodRoutineObjectData> ->  Observable.fromArray(t)}
     }
 
 

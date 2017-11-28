@@ -1,6 +1,7 @@
 package com.ryzko.nibu.model.user
 
 import android.content.Context
+import com.ryzko.nibu.model.rest.BabyObjectData
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
 
@@ -12,8 +13,10 @@ import com.ryzko.nibu.model.rest.UserObjectData
 
 class UserData private constructor(context: Context) {
 
-    var userObj:UserObjectData? = null;
+    var userObj:UserObjectData? = null
     var tokenObj:TokenObjectData? = null
+    var selectedBaby: BabyObjectData? = null
+    var babyList:List<BabyObjectData>? = null;
 
     companion object {
         private var instance: UserData? = null

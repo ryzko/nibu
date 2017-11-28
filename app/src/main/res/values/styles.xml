@@ -3,15 +3,16 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorDarkAccent</item>
+        <item name="colorPrimaryDark">@color/nibu_gray_light</item>
+        <item name="colorAccent">@color/nibu_accent</item>
         <item name="android:toolbarStyle">@style/ToolbarTheme</item>
         <item name="android:actionBarStyle">@style/ToolbarTheme</item>
 
-        <item name="android:textColorPrimary">@color/darkerGray</item>
+        <item name="android:textColorPrimary">@color/nibu_gray_dark</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowActionBar">true</item>
+        <item name="android:statusBarColor">@color/nibu_gray</item>
     </style>
 
     <!-- Splash Screen theme. -->
@@ -21,17 +22,17 @@
 
     <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
 
-        <item name="android:background">@color/primaryLightColor</item>
-        <item name="android:colorBackground">@color/primaryLightColor</item>
-        <item name="colorPrimary">@color/primaryLightColor</item>
-        <item name="android:textColorSecondary">@color/colorToolbar</item>
+        <item name="android:background">@color/nibu_toolbar_white</item>
+        <item name="android:colorBackground">@color/nibu_toolbar_white</item>
+        <item name="colorPrimary">@color/nibu_toolbar_white</item>
+        <item name="android:textColorSecondary">@color/nibu_toolbar_white</item>
         <item name="theme">@style/NibuToolbarTheme</item>
     </style>
 
     <style name="NibuToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/colorPrimary</item>
-        <item name="colorControlNormal">@color/colorToolbar</item>
-        <item name="colorControlHighlight">@color/colorToolbar</item>
+        <item name="android:textColorPrimary">@color/nibu_gray_dark</item>
+        <item name="colorControlNormal">@color/nibu_toolbar_white</item>
+        <item name="colorControlHighlight">@color/nibu_toolbar_white</item>
     </style>
 
 </resources>

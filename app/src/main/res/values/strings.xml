@@ -1,32 +1,39 @@
 <resources>
-    <string name="app_name">nibu</string>
-    <string name="title_activity_dashboard">nibu</string>
-    <string name="title_home">Home</string>
-    <string name="title_user">User</string>
-    <string name="title_settings">Settings</string>
-    <string name="title_main">Main</string>
+    <string name="application.name">nibu</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="title_activity_register">Register</string>
-    <string name="title_activity_register_message">New to nibu?</string>
+    <!-- Strings related activity dashboard -->
+    <string name="activity.dashboard.toolbar.title">nibu</string>
+    <string name="activity.dashboard.navigation.routines">Daily routines</string>
+    <string name="activity.dashboard.navigation.health">Health</string>
+    <string name="activity.dashboard.navigation.settings">Settings</string>
+
+    <string name="activity.dashboard.routineslist.food">Feeding</string>
+    <string name="activity.dashboard.routineslist.sleep">Sleep</string>
+    <string name="activity.dashboard.routineslist.diapers">Diapers</string>
+    <string name="activity.dashboard.routineslist.play">Play time</string>
+    <string name="activity.dashboard.routineslist.walks">Walks</string>
+
+    <!-- Strings related activity register -->
+    <string name="activity_register_title">Register</string>
+    <string name="activity_register_guestion">New to nibu?</string>
     <string name="activity_register_btn">Sign up</string>
-    <string name="title_activity_login">Sign in</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <!-- Strings related activity login -->
+    <string name="activity.login.title">Sign in</string>
+    <string name="activity.login.textview.email.hint">Email</string>
+    <string name="activity.login.textview.password.hint">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_existing_email">The email has already been taken.</string>
-    <string name="error_invalid_password">This password is too short (min 6 chars)</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="activity.login.error.invalid_email">This email address is invalid</string>
+    <string name="activity.login.error.existing_email">The email has already been taken.</string>
+    <string name="activity.login.error.invalid_password">This password is too short (min 6 chars)</string>
+    <string name="activity.login.error.incorrect_password">This password is incorrect</string>
+    <string name="activity.login.error.field_required">This field is required</string>
+
     <!-- Strings related to menus -->
     <string name="menu_delete">Delete</string>
     <string name="menu_edit">Edit</string>
-    <string name="food">Food</string>
+
+    <string name="title_main">Main activity</string>
+
 </resources>

@@ -6,13 +6,16 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.ryzko.nibu.R
+import com.ryzko.nibu.model.adapters.BabiesListAdapter
 import com.ryzko.nibu.model.api.ApiManager
+import com.ryzko.nibu.model.rest.BabyObjectData
 import com.ryzko.nibu.model.rest.LoginObjectData
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
 import com.ryzko.nibu.model.user.UserData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_babies_list.*
 import kotlinx.android.synthetic.main.activity_login.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
@@ -73,9 +76,28 @@ class LoginActivity : AppCompatActivity() {
     private fun onUserSuccess(user:UserObjectData){
         userData?.userObj = user;
 
-        startActivity(Intent(this, DashboardActivity::class.java))
 
+        startActivity(Intent(this, DashboardActivity::class.java))
+        apiManager = ApiManager.getInstance(this.applicationContext)
+        getBabies();
     }
+
+    fun getBabies() {
+        apiManager!!.getAllBabies()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ list: ArrayList<BabyObjectData> ->
+                    if (list != null) getBabies(list)
+                }, { error: Throwable? ->
+                    if (error != null) onRequestFailure(error)
+
+                })
+    }
+
+    fun getBabies(list: ArrayList<BabyObjectData>) {
+        UserData.getInstance(this.applicationContext).babyList = list
+    }
+
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))

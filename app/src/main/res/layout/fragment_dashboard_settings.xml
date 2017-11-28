@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ryzko.nibu.view.fragments.DashboardSettingsFragment">
+    tools:context="com.ryzko.nibu.view.fragments.DashboardBodyHealthFragment">
 
     <!-- TODO: Update blank fragmcard_view_babyyout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_activity_register" />
+        android:text="@string/activity_register_title" />
 
 </FrameLayout>

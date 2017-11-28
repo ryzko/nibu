@@ -6,21 +6,15 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
-import android.util.Log.d
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.RegisterObject
-import com.ryzko.nibu.model.api.ApiError
-import com.ryzko.nibu.model.api.NibuApi
-import com.ryzko.nibu.view.fragments.DashboardHomeFragment
-import com.ryzko.nibu.view.fragments.DashboardSettingsFragment
+
+import com.ryzko.nibu.view.fragments.DashboardDailyRoutinesFragment
+import com.ryzko.nibu.view.fragments.DashboardBodyHealthFragment
 import com.ryzko.nibu.view.fragments.DashboardUserFragment
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentInteractionListener, DashboardUserFragment.OnFragmentInteractionListener, DashboardSettingsFragment.OnFragmentInteractionListener  {
+class DashboardActivity : AppCompatActivity(), DashboardDailyRoutinesFragment.OnFragmentInteractionListener, DashboardUserFragment.OnFragmentInteractionListener, DashboardBodyHealthFragment.OnFragmentInteractionListener  {
 
     var result = mutableListOf<String>()
 
@@ -35,19 +29,19 @@ class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentI
         var selectedFragment: Fragment? = null
         when (item.itemId) {
 
-            R.id.navigation_home -> {
+            R.id.navigation_routines -> {
                 //message.setText(R.string.title_home)
-                selectedFragment = DashboardHomeFragment.newInstance()
+                selectedFragment = DashboardDailyRoutinesFragment.newInstance()
                // return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_user -> {
+            R.id.navigation_health -> {
                 //message.setText(R.string.title_user)
                 selectedFragment = DashboardUserFragment.newInstance()
                // return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_settings -> {
                // message.setText(R.string.title_settings)
-                selectedFragment = DashboardSettingsFragment.newInstance()
+                selectedFragment = DashboardBodyHealthFragment.newInstance()
               //  return@OnNavigationItemSelectedListener true
             }
         }
@@ -73,7 +67,7 @@ class DashboardActivity : AppCompatActivity(), DashboardHomeFragment.OnFragmentI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-        replaceFragment(DashboardHomeFragment.newInstance())
+        replaceFragment(DashboardDailyRoutinesFragment.newInstance())
         setSupportActionBar(toolbar)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)

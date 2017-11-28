@@ -65,4 +65,6 @@ dependencies {
 
     implementation 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2'
     implementation 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
+
+    implementation 'org.zakariya.stickyheaders:stickyheaders:0.7.6'
 }

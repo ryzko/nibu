@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.ryzko.nibu.view.fragments.DashboardHomeFragment">
+    tools:context="com.ryzko.nibu.view.fragments.DashboardDailyRoutinesFragment">
 
     <!-- TODO: Update blank fragmcard_view_babyyout -->
 
@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="128dp"
             android:elevation="2dp"
-            android:background="@color/primaryLightColor"
+            android:background="@color/nibu_white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">

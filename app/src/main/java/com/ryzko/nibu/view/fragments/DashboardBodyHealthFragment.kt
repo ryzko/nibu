@@ -4,25 +4,21 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.uiobjects.HomeListObject
-import com.ryzko.nibu.model.adapters.HomeListAdapter
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [DashboardHomeFragment.OnFragmentInteractionListener] interface
+ * [DashboardBodyHealthFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [DashboardHomeFragment.newInstance] factory method to
+ * Use the [DashboardBodyHealthFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DashboardHomeFragment : Fragment() {
+class DashboardBodyHealthFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -36,25 +32,13 @@ class DashboardHomeFragment : Fragment() {
             mParam1 = arguments!!.getString(ARG_PARAM1)
             mParam2 = arguments!!.getString(ARG_PARAM2)
         }
-
-
     }
 
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
-        val view:View = inflater.inflate(R.layout.fragment_dashboard_home, container, false)
-        val list:List<HomeListObject> = listOf(HomeListObject("food"), HomeListObject("diaper"), HomeListObject("sleep"), HomeListObject("play"), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject(), HomeListObject())
-        val adapter = HomeListAdapter(list)
-        var grid:RecyclerView = view.findViewById(R.id.home_grid)
-
-        grid.layoutManager = GridLayoutManager(context, 3)
-        grid.adapter = adapter
-
-
-
-        return view
+        // Inflate the card_view_baby for this fragment
+        return inflater!!.inflate(R.layout.fragment_dashboard_settings, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -68,9 +52,6 @@ class DashboardHomeFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             mListener = context
-
-
-
         } else {
             throw RuntimeException(context!!.toString() + " must implement OnFragmentInteractionListener")
         }
@@ -107,11 +88,11 @@ class DashboardHomeFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DashboardHomeFragment.
+         * @return A new instance of fragment DashboardBodyHealthFragment.
          */
         // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String = "a", param2: String = "b"): DashboardHomeFragment {
-            val fragment = DashboardHomeFragment()
+        fun newInstance(param1: String = "a", param2: String = "b"): DashboardBodyHealthFragment {
+            val fragment = DashboardBodyHealthFragment()
             val args = Bundle()
             args.putString(ARG_PARAM1, param1)
             args.putString(ARG_PARAM2, param2)
