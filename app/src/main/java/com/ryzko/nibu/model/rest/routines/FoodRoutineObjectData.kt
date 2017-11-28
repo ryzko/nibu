@@ -6,14 +6,14 @@ package com.ryzko.nibu.model.rest.routines
  * http://ryzko.com
  */
 
-data class FoodRoutineObjectData (val id:Int, //breast, solid, bottle
-                                  val baby_id:Int, //breast, solid, bottle
-                                  val baby_sid:String, //breast, solid, bottle
-                                  val type:String, //breast, solid, bottle
-                                  val breast_side:String, //left, right
-                                  val breastfeeding_time_minutes:String, //min?sec?
-                                  val bottle_milk_type:String,//breast, formula
-                                  val start_time:String, //2017-11-25 14:20
-                                  val end_time:String, //2017-11-25 14:50
-                                  val volume:Int,//150 ml
-                                  val weight:Int) //120 g
+data class FoodRoutineObjectData (val id:Int = 0, //breast, solid, bottle
+                                  val baby_id:Int = 0, //breast, solid, bottle
+                                  val baby_sid:String = "", //breast, solid, bottle
+                                  val type:String="breast", //breast, solid, bottle
+                                  val breast_side:String="left", //left, right
+                                  val breastfeeding_time_minutes:String = "0", //min?sec?
+                                  val bottle_milk_type:String="breast",//breast, formula
+                                  val start_time:String="2014-07-07 18:20", //2017-11-25 14:20
+                                  val end_time:String="2014-07-07 18:30", //2017-11-25 14:50
+                                  val volume:Int=0,//150 ml
+                                  val weight:Int=0) //120 g
