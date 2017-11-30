@@ -33,20 +33,21 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         sections = mutableListOf()
         var date:String = ""
         var currentSection:Section? = null
-        var sectionList:MutableList<FoodRoutineObjectData> = mutableListOf()
+
 
         for(item:FoodRoutineObjectData in list){
             if(item.start_time.substring(0,10) != date){
                 if(currentSection!=null){
                     sections.add(currentSection)
                 }
+
+                var sectionList:MutableList<FoodRoutineObjectData> = mutableListOf()
                 date = item.start_time.substring(0,10)
-                sectionList.add(item)
-                currentSection = FoodRoutinesListAdapter.Section(date, sectionList)
+                currentSection = Section(date, sectionList)
             }
 
             if(currentSection!=null){
-                sections.add(currentSection)
+                currentSection.list.add(item)
             }
 
 
@@ -108,7 +109,7 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
     override fun onBindHeaderViewHolder(viewHolder: SectioningAdapter.HeaderViewHolder?, sectionIndex: Int, headerUserType: Int) {
         super.onBindHeaderViewHolder(viewHolder, sectionIndex, headerUserType)
         val s:Section = sections[sectionIndex]
-        val vh:FoodRoutinesListAdapter.HeaderViewHolder = viewHolder!! as FoodRoutinesListAdapter.HeaderViewHolder
+        val vh:FoodRoutinesListAdapter.HeaderViewHolder = FoodRoutinesListAdapter.HeaderViewHolder(viewHolder!!.itemView)
         vh.title.text = s.date
 
     }
@@ -117,7 +118,7 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         super.onBindItemViewHolder(viewHolder, sectionIndex, itemIndex, itemUserType)
 
         val s:Section = sections[sectionIndex]
-        val vh:FoodRoutinesListAdapter.ItemViewHolder = viewHolder!! as FoodRoutinesListAdapter.ItemViewHolder
+        val vh:FoodRoutinesListAdapter.ItemViewHolder = FoodRoutinesListAdapter.ItemViewHolder(viewHolder!!.itemView)
         val foodItem:FoodRoutineObjectData = s.list[itemIndex]
         vh.title.text = foodItem.type
     }
@@ -126,7 +127,7 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         super.onBindFooterViewHolder(viewHolder, sectionIndex, footerUserType)
 
         val s:Section = sections[sectionIndex]
-        val vh:FoodRoutinesListAdapter.FooterViewHolder = viewHolder!! as FoodRoutinesListAdapter.FooterViewHolder
+        val vh:FoodRoutinesListAdapter.FooterViewHolder = FoodRoutinesListAdapter.FooterViewHolder(viewHolder!!.itemView)
         vh.title.text = "footer [...]"
     }
 

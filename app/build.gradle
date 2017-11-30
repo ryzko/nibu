@@ -65,6 +65,8 @@ dependencies {
 
     implementation 'com.joanzapata.iconify:android-iconify-simplelineicons:2.2.2'
     implementation 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
-
+    //Sticky headers
     implementation 'org.zakariya.stickyheaders:stickyheaders:0.7.6'
+    //floating action button
+    implementation 'com.github.clans:fab:1.6.4'
 }

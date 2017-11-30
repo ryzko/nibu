@@ -1,8 +1,10 @@
 package com.ryzko.nibu.view.activities
 
 import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.ryzko.nibu.R
 import com.ryzko.nibu.model.adapters.FoodRoutinesListAdapter
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
@@ -41,10 +43,39 @@ class FoodRoutineActivity : AppCompatActivity() {
                 FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
                 FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
                 FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-08 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-08 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-10 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
+                FoodRoutineObjectData(start_time = "2014-07-13 18:20"),
                 FoodRoutineObjectData(start_time = "2014-07-13 18:20"))
 
         recyclerview_food_routines.layoutManager = StickyHeaderLayoutManager()
         recyclerview_food_routines.adapter = FoodRoutinesListAdapter(list)
+        swipe_layout.setOnRefreshListener {
+            onRefreshList()
+        }
+
+
+        menu_breast.setOnClickListener {
+            startActivity(Intent(this, FoodRoutineBreastfeedingDetailsActivity::class.java))
+        }
+
+    }
+
+    fun onRefreshList(){
+        Toast.makeText(this, "refreshing...",Toast.LENGTH_LONG).show()
+        swipe_layout.setRefreshing(false);
     }
 
     override fun attachBaseContext(newBase: Context?) {
