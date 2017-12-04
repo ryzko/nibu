@@ -1,6 +1,7 @@
 package com.ryzko.nibu
 
 import android.app.Application
+import android.content.Context
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import com.joanzapata.iconify.fonts.SimpleLineIconsModule
 import com.joanzapata.iconify.Iconify
@@ -17,7 +18,7 @@ class Nibu: Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        var instance = this
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
                 .setDefaultFontPath("fonts/Lato-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
@@ -27,5 +28,11 @@ class Nibu: Application() {
                 .with(IoniconsModule())
 
     }
+
+    companion object {
+        lateinit var instance: Nibu
+            private set
+    }
+
 
 }

@@ -3,7 +3,6 @@ package com.ryzko.nibu.view.activities
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.TypedValue
 import com.ryzko.nibu.R
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import kotlinx.android.synthetic.main.activity_food_routine_breastfeeding_details.*
@@ -45,7 +44,7 @@ class FoodRoutineBreastfeedingDetailsActivity : AppCompatActivity() {
         val formattedCurrentDate = simpleDateFormat.format(currentDate)
         val formattedCurrentTime = simpleTimeFormat.format(currentDate)
         textview_date.setText(formattedCurrentDate)
-        textview_time.setText(formattedCurrentTime)
+        textview_breast_starttime.setText(formattedCurrentTime)
     }
 
     fun ifUpdate():Boolean{

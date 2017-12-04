@@ -6,8 +6,9 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'realm-android'
 
+
 realm {
-    syncEnabled = true;
+    syncEnabled = true
 }
 
 android {

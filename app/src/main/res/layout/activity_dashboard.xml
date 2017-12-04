@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fafafa"
+    android:background="@color/nibu_background_grey_light"
     tools:context="com.ryzko.nibu.view.activities.DashboardActivity"
     tools:ignore="MissingPrefix">
 

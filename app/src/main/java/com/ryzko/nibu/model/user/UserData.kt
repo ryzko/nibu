@@ -1,9 +1,12 @@
 package com.ryzko.nibu.model.user
 
 import android.content.Context
+import com.ryzko.nibu.Nibu
+import com.ryzko.nibu.model.adapters.FoodRoutinesListAdapter
 import com.ryzko.nibu.model.rest.BabyObjectData
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
+import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 
 /**
  * Created by Marcin Ryzko on 19.11.2017.
@@ -11,21 +14,16 @@ import com.ryzko.nibu.model.rest.UserObjectData
  * http://ryzko.com
  */
 
-class UserData private constructor(context: Context) {
+object UserData{
 
-    var userObj:UserObjectData? = null
-    var tokenObj:TokenObjectData? = null
-    var selectedBaby: BabyObjectData? = null
-    var babyList:List<BabyObjectData>? = null;
+    lateinit var userObj:UserObjectData
+    lateinit var tokenObj:TokenObjectData
+    lateinit var selectedBaby: BabyObjectData
+    lateinit var babyList:MutableList<BabyObjectData>
+    lateinit var sectionedFoodList:MutableList<FoodRoutinesListAdapter.Section>
 
-    companion object {
-        private var instance: UserData? = null
-        fun getInstance(context: Context): UserData {
-            if(instance == null) {
-                instance = UserData(context)
-            }
-
-            return instance!!
-        }
-    }
+    /*companion object {
+        lateinit var instance: UserData
+            private set
+    }*/
 }

@@ -21,8 +21,7 @@ class BabiesListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_babies_list)
         rv_babies_list.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-        apiManager = ApiManager.getInstance(this.applicationContext)
-        getBabies();
+        getBabies()
     }
 
     fun getBabies() {
@@ -30,7 +29,7 @@ class BabiesListActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: ArrayList<BabyObjectData> ->
-                    if (list != null) getBabies(list)
+                    getBabies(list)
                 }, { error: Throwable? ->
                     if (error != null) onRequestFailure(error)
 
@@ -39,7 +38,7 @@ class BabiesListActivity : AppCompatActivity() {
 
     fun getBabies(list: ArrayList<BabyObjectData>) {
         val adapter = BabiesListAdapter(list)
-        rv_babies_list.adapter = adapter;
+        rv_babies_list.adapter = adapter
     }
 
     private fun onRequestFailure(error: Throwable) {

@@ -24,15 +24,16 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 class LoginActivity : AppCompatActivity() {
 
-    var userData: UserData? = null
-    var apiManager: ApiManager? = null
+   // lateinit var userData:UserData
+   // lateinit var apiManager:ApiManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        apiManager = ApiManager.getInstance(this.applicationContext)
-        userData = UserData.getInstance(this.applicationContext)
+        //userData = UserData.instance
+       // apiManager = ApiManager.instance
+
         setDrawables()
 
 
@@ -40,7 +41,7 @@ class LoginActivity : AppCompatActivity() {
             val loginObj = LoginObjectData(tv_username.text.toString(), tv_password.text.toString())
             login_container.visibility = View.GONE
             login_progress.visibility = View.VISIBLE
-            apiManager!!.login(loginObj)
+            ApiManager.login(loginObj)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({ token: TokenObjectData? ->
@@ -57,8 +58,8 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun onLoginSuccess(token: TokenObjectData) {
-        userData?.tokenObj = token;
-        apiManager!!.user(token)
+        UserData.tokenObj = token
+        ApiManager.user(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -77,16 +78,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun onUserSuccess(user: UserObjectData) {
-        userData?.userObj = user;
+        UserData.userObj = user
 
 
         startActivity(Intent(this, DashboardActivity::class.java))
-        apiManager = ApiManager.getInstance(this.applicationContext)
-        getBabies();
+
+        getBabies()
     }
 
     fun getBabies() {
-        apiManager!!.getAllBabies()
+        ApiManager.getAllBabies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ list: ArrayList<BabyObjectData> ->
@@ -97,9 +98,11 @@ class LoginActivity : AppCompatActivity() {
                 })
     }
 
-    fun getBabies(list: ArrayList<BabyObjectData>) {
+    fun getBabies(list: MutableList<BabyObjectData>) {
 
-        UserData.getInstance(this.applicationContext).babyList = list
+        UserData.babyList = list
+        UserData.selectedBaby = list.get(0)
+
     }
 
 
@@ -112,12 +115,12 @@ class LoginActivity : AppCompatActivity() {
 
         val loginImg = ContextCompat.getDrawable(this.baseContext, R.drawable.message_96px)
         val h = loginImg!!.intrinsicHeight
-        val w = loginImg!!.intrinsicWidth
+        val w = loginImg.intrinsicWidth
         loginImg.setBounds(0, 0, 64, 64)
 
         val passImg = ContextCompat.getDrawable(this.baseContext, R.drawable.key_96px)
         val h1 = passImg!!.intrinsicHeight
-        val w1 = passImg!!.intrinsicWidth
+        val w1 = passImg.intrinsicWidth
         passImg.setBounds(0, 0, 64, 64)
 
         tv_username.setCompoundDrawables(loginImg, null, null, null)

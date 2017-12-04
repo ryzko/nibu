@@ -6,5 +6,4 @@ package com.ryzko.nibu.model.rest.routines
  * http://ryzko.com
  */
 
-class WalkRoutineObjectData {
-}
+class WalkRoutineObjectData

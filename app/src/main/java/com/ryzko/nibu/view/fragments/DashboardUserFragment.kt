@@ -36,7 +36,7 @@ class DashboardUserFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the card_view_baby for this fragment
-        return inflater!!.inflate(R.layout.fragment_dashboard_user, container, false)
+        return inflater.inflate(R.layout.fragment_dashboard_user, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event

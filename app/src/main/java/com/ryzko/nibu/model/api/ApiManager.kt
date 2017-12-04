@@ -1,6 +1,7 @@
 package com.ryzko.nibu.model.api
 
 import android.content.Context
+import com.ryzko.nibu.Nibu
 import com.ryzko.nibu.model.rest.*
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import com.ryzko.nibu.model.user.UserData
@@ -12,26 +13,12 @@ import io.reactivex.Observable
  * http://ryzko.com
  */
 
-class ApiManager private constructor(context: Context) {
+object ApiManager {
 
     private val service = NibuApi().service
-    private var userData:UserData = UserData.getInstance(context)
+    private var userData:UserData = UserData
     private val PREFIX:String = "Bearer "
-    private val context:Context = context;
 
-    companion object
-    {
-        private var instance: ApiManager? = null
-        fun getInstance(context: Context): ApiManager
-        {
-            if(instance == null)
-            {
-                instance = ApiManager(context)
-            }
-
-            return instance!!
-        }
-    }
 
     fun register(registerObj:RegisterObjectData): Observable<TokenObjectData> {
         return service.register(registerObj.name, registerObj.email, registerObj.password, registerObj.passwordConfirmation, registerObj.clientId, registerObj.clientSecret, registerObj.granType).map {
@@ -46,13 +33,13 @@ class ApiManager private constructor(context: Context) {
     }
 
     fun addBaby(babyObj:BabyObjectData): Observable<BabyObjectData> {
-        return service.addBaby(PREFIX + userData.tokenObj!!.access_token, babyObj.name, babyObj.birth_date, babyObj.avatar).map {
+        return service.addBaby(PREFIX + userData.tokenObj.access_token, babyObj.name, babyObj.birth_date, babyObj.avatar).map {
             result -> BabyObjectData(result.id, result.sid, result.parent_sid, result.name, result.birth_date, result.avatar)
         }
     }
 
     fun getAllBabies(): Observable<ArrayList<BabyObjectData>> {
-        return service.getAllBabies(PREFIX + userData.tokenObj!!.access_token)
+        return service.getAllBabies(PREFIX + userData.tokenObj.access_token)
                 .flatMap { t: ArrayList<BabyObjectData> ->  Observable.fromArray(t)}
     }
 
@@ -64,7 +51,7 @@ class ApiManager private constructor(context: Context) {
     }
 
     fun addFoodRoutine(foodyObj:FoodRoutineObjectData): Observable<FoodRoutineObjectData> {
-        return service.addFoodRoutine(PREFIX + userData.tokenObj!!.access_token,
+        return service.addFoodRoutine(PREFIX + userData.tokenObj.access_token,
                 baby_sid = foodyObj.baby_sid,
                 type = foodyObj.type,
                 breast_side = foodyObj.breast_side,
@@ -89,11 +76,11 @@ class ApiManager private constructor(context: Context) {
     }
 
 
-    fun getAllFoodRoutines(): Observable<ArrayList<FoodRoutineObjectData>> {
-        val token:String = PREFIX + userData.tokenObj!!.access_token
-        val babySID:String = userData.selectedBaby!!.sid
+    fun getAllFoodRoutines(): Observable<MutableList<FoodRoutineObjectData>> {
+        val token:String = PREFIX + userData.tokenObj.access_token
+        val babySID:String = userData.selectedBaby.sid
         return service.getAllFoodRoutines(token, babySID)
-                .flatMap { t: ArrayList<FoodRoutineObjectData> ->  Observable.fromArray(t)}
+                .flatMap { t: MutableList<FoodRoutineObjectData> ->  Observable.fromArray(t)}
     }
 
 

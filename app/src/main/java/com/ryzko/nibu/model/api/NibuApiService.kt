@@ -73,7 +73,7 @@ interface NibuApiService {
             @Field("baby_sid") baby_sid:String,
             @Field("type") type:String,
             @Field("breast_side") breast_side:String,
-            @Field("breastfeeding_time_minutes") breastfeeding_time_minutes:String,
+            @Field("breastfeeding_time_minutes") breastfeeding_time_minutes:Int,
             @Field("bottle_milk_type") bottle_milk_type:String,
             @Field("start_time") start_time:String,
             @Field("end_time") end_time:String,
@@ -81,9 +81,9 @@ interface NibuApiService {
             @Field("weight") weight:String):Observable<FoodRoutineObjectData>
 
     @Headers("Accept: application/json")
-    @GET("food_routines")
+    @GET("food_routines/{baby_sid}")
     fun getAllFoodRoutines(
             @Header("Authorization") token:String,
-            @Field("baby_sid") baby_sid:String):Observable<ArrayList<FoodRoutineObjectData>>
+            @Path("baby_sid") baby_sid:String):Observable<MutableList<FoodRoutineObjectData>>
 
 }

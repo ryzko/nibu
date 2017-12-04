@@ -6,6 +6,4 @@ package com.ryzko.nibu.model.uiobjects
  * http://ryzko.com
  */
 
-class HomeListObject(var type:String = "food", var title:String="Food") {
-
-}
+class HomeListObject(var type:String = "food", var title:String="Food")

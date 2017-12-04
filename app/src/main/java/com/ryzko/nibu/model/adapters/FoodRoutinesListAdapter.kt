@@ -1,12 +1,20 @@
 package com.ryzko.nibu.model.adapters
 
+import android.content.Context
+import android.support.constraint.ConstraintLayout
 import android.view.View
 import android.view.ViewGroup
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import org.zakariya.stickyheaders.SectioningAdapter
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import android.widget.TextView
+import com.ryzko.nibu.Nibu
 import com.ryzko.nibu.R
+import com.ryzko.nibu.model.user.UserData
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 
 /**
@@ -15,10 +23,11 @@ import com.ryzko.nibu.R
  * http://ryzko.com
  */
 
-class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): SectioningAdapter() {
+class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData>): SectioningAdapter() {
 
-    private var sections:MutableList<Section> = mutableListOf()
-    class Section(var date:String, var list:MutableList<FoodRoutineObjectData>)
+    lateinit var sections:MutableList<Section>
+
+    class Section(var date:String, var list:MutableList<FoodRoutineObjectData>, var time:Int = 0, var volume:Int = 0, var weight:Int = 0)
 
 
     init {
@@ -29,7 +38,7 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         return list.size
     }
 
-    fun cutToSections(list:List<FoodRoutineObjectData>){
+    fun cutToSections(list:MutableList<FoodRoutineObjectData>){
         sections = mutableListOf()
         var date:String = ""
         var currentSection:Section? = null
@@ -47,6 +56,9 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
             }
 
             if(currentSection!=null){
+                currentSection.volume+=item.volume
+                currentSection.time+=item.breastfeeding_time_minutes
+                currentSection.weight+=item.weight
                 currentSection.list.add(item)
             }
 
@@ -55,6 +67,7 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
 
         sections.add(currentSection!!)
         notifyAllSectionsDataSetChanged()
+        //UserData.sectionedFoodList = sections
     }
 
 
@@ -71,8 +84,22 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
     }
 
     class ItemViewHolder(itemView:View):SectioningAdapter.ItemViewHolder(itemView){
-        val title:TextView = itemView.findViewById(R.id.food_routine_item_title)
+        val breastItem:ConstraintLayout = itemView.findViewById(R.id.breast_item)
+        val bottleItem:ConstraintLayout = itemView.findViewById(R.id.bottle_item)
+        val solidItem:ConstraintLayout = itemView.findViewById(R.id.solid_item)
+
+        val breastStartTime:TextView = itemView.findViewById(R.id.textview_breast_starttime)
+        val bottleStartTime:TextView = itemView.findViewById(R.id.textview_bottle_startime)
+        val solidStartTime:TextView = itemView.findViewById(R.id.textview_solid_starttime)
+
+        val breastSide:TextView = itemView.findViewById(R.id.textview_brest_side)
+
+        val breastTime:TextView = itemView.findViewById(R.id.textview_breast_time)
+        val bottleTime:TextView = itemView.findViewById(R.id.textview_bottle_time)
+        val solidTime:TextView = itemView.findViewById(R.id.textview_solid_time)
+
     }
+
 
     override fun onCreateItemViewHolder(parent: ViewGroup?, itemUserType: Int): SectioningAdapter.ItemViewHolder {
         val inflater = LayoutInflater.from(parent!!.context)
@@ -81,7 +108,13 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
     }
 
     class FooterViewHolder(itemView:View): SectioningAdapter.FooterViewHolder(itemView) {
-        var title:TextView = itemView.findViewById(R.id.food_routine_footer_title)
+        var breastFooterItem:LinearLayout = itemView.findViewById(R.id.breast_footer_item)
+        var bottleFooterItem:LinearLayout = itemView.findViewById(R.id.bottle_footer_item)
+        var solidFooterItem:LinearLayout = itemView.findViewById(R.id.solid_footer_item)
+
+        var breastTotal:TextView = itemView.findViewById(R.id.breast_total)
+        var bottleTotal:TextView = itemView.findViewById(R.id.bottle_total)
+        var solidTotal:TextView = itemView.findViewById(R.id.solid_total)
     }
 
     override fun onCreateFooterViewHolder(parent: ViewGroup?, footerUserType: Int): SectioningAdapter.FooterViewHolder {
@@ -90,8 +123,9 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         return SectioningAdapter.FooterViewHolder(v)
     }
 
+
     override fun doesSectionHaveFooter(sectionIndex: Int): Boolean {
-        return true
+        return false
     }
 
     override fun doesSectionHaveHeader(sectionIndex: Int): Boolean {
@@ -110,25 +144,74 @@ class FoodRoutinesListAdapter(private val list:List<FoodRoutineObjectData>): Sec
         super.onBindHeaderViewHolder(viewHolder, sectionIndex, headerUserType)
         val s:Section = sections[sectionIndex]
         val vh:FoodRoutinesListAdapter.HeaderViewHolder = FoodRoutinesListAdapter.HeaderViewHolder(viewHolder!!.itemView)
-        vh.title.text = s.date
+        val date = SimpleDateFormat("yyyy-MM-dd").parse(s.date)//LocalDate.parse(s.date, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+        val headerFormat = SimpleDateFormat("EEEE, dd MMMM yyyy")
+        vh.title.text = headerFormat.format(date)
 
     }
 
     override fun onBindItemViewHolder(viewHolder: SectioningAdapter.ItemViewHolder?, sectionIndex: Int, itemIndex: Int, itemUserType: Int) {
-        super.onBindItemViewHolder(viewHolder, sectionIndex, itemIndex, itemUserType)
+        //super.onBindItemViewHolder(viewHolder, sectionIndex, itemIndex, itemUserType)
 
         val s:Section = sections[sectionIndex]
         val vh:FoodRoutinesListAdapter.ItemViewHolder = FoodRoutinesListAdapter.ItemViewHolder(viewHolder!!.itemView)
         val foodItem:FoodRoutineObjectData = s.list[itemIndex]
-        vh.title.text = foodItem.type
+
+        var type:String = foodItem.type
+
+        vh.bottleItem.visibility = View.GONE
+        vh.solidItem.visibility = View.GONE
+        vh.breastItem.visibility = View.GONE
+
+        when(type){
+            "breast" -> {
+                vh.breastItem.visibility = View.VISIBLE
+                vh.breastStartTime.text = foodItem.start_time.substring(11)
+                vh.breastTime.text = "${Math.floor((foodItem.breastfeeding_time_minutes/60).toDouble()).toInt()} h ${foodItem.breastfeeding_time_minutes%60} min "
+                vh.breastSide.text = foodItem.breast_side
+            }
+            "solid" -> {
+                vh.solidItem.visibility = View.VISIBLE
+                vh.solidStartTime.text = foodItem.start_time.substring(11)
+                vh.solidTime.text = "${foodItem.weight} g"
+            }
+            "bottle" -> {
+                vh.bottleItem.visibility = View.VISIBLE
+                vh.bottleStartTime.text = foodItem.start_time.substring(11)
+                vh.bottleTime.text = "${foodItem.volume} ml"
+            }
+        }
+
+
+
+
+
     }
+
 
     override fun onBindFooterViewHolder(viewHolder: SectioningAdapter.FooterViewHolder?, sectionIndex: Int, footerUserType: Int) {
         super.onBindFooterViewHolder(viewHolder, sectionIndex, footerUserType)
 
         val s:Section = sections[sectionIndex]
         val vh:FoodRoutinesListAdapter.FooterViewHolder = FoodRoutinesListAdapter.FooterViewHolder(viewHolder!!.itemView)
-        vh.title.text = "footer [...]"
+        vh.bottleFooterItem.visibility = View.GONE
+        vh.breastFooterItem.visibility = View.GONE
+        vh.solidFooterItem.visibility = View.GONE
+
+        if(s.time>0){
+            vh.breastFooterItem.visibility = View.VISIBLE
+            vh.breastTotal.text = "${Math.floor((s.time/60).toDouble()).toInt()} h ${s.time%60} min "
+        }
+
+        if(s.volume>0){
+            vh.bottleFooterItem.visibility = View.VISIBLE
+            vh.bottleTotal.text = "${s.volume} ml"
+        }
+
+        if(s.volume>0){
+            vh.solidFooterItem.visibility = View.VISIBLE
+            vh.solidTotal.text = "${s.weight} g"
+        }
     }
 
 }
