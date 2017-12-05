@@ -66,7 +66,7 @@ class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData
         }
 
         sections.add(currentSection!!)
-        notifyAllSectionsDataSetChanged()
+
         //UserData.sectionedFoodList = sections
     }
 
@@ -125,12 +125,13 @@ class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData
 
 
     override fun doesSectionHaveFooter(sectionIndex: Int): Boolean {
-        return false
+        return true
     }
 
     override fun doesSectionHaveHeader(sectionIndex: Int): Boolean {
         return true
     }
+
 
     override fun getNumberOfItemsInSection(sectionIndex: Int): Int {
         return sections[sectionIndex].list.size
@@ -141,7 +142,7 @@ class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData
     }
 
     override fun onBindHeaderViewHolder(viewHolder: SectioningAdapter.HeaderViewHolder?, sectionIndex: Int, headerUserType: Int) {
-        super.onBindHeaderViewHolder(viewHolder, sectionIndex, headerUserType)
+       // super.onBindHeaderViewHolder(viewHolder, sectionIndex, headerUserType)
         val s:Section = sections[sectionIndex]
         val vh:FoodRoutinesListAdapter.HeaderViewHolder = FoodRoutinesListAdapter.HeaderViewHolder(viewHolder!!.itemView)
         val date = SimpleDateFormat("yyyy-MM-dd").parse(s.date)//LocalDate.parse(s.date, DateTimeFormatter.ofPattern("dd-MM-yyyy"))
