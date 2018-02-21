@@ -25,7 +25,7 @@ import java.time.format.DateTimeFormatter
 
 class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData>): SectioningAdapter() {
 
-    lateinit var sections:MutableList<Section>
+    var sections:MutableList<Section> = mutableListOf()
 
     class Section(var date:String, var list:MutableList<FoodRoutineObjectData>, var time:Int = 0, var volume:Int = 0, var weight:Int = 0)
 
@@ -39,7 +39,6 @@ class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData
     }
 
     fun cutToSections(list:MutableList<FoodRoutineObjectData>){
-        sections = mutableListOf()
         var date:String = ""
         var currentSection:Section? = null
 
@@ -64,8 +63,8 @@ class FoodRoutinesListAdapter(private var list:MutableList<FoodRoutineObjectData
 
 
         }
-
-        sections.add(currentSection!!)
+        
+        this.sections.add(currentSection!!)
 
         //UserData.sectionedFoodList = sections
     }

@@ -14,10 +14,7 @@ import kotlinx.android.synthetic.main.list_foudroutine_item.view.*
 /**
  * Created by Marcin on 2017-12-06.
  */
-class FoodRoutineFlexibleItem constructor(foodItem:FoodRoutineObjectData): AbstractFlexibleItem<FoodRoutineFlexibleItem.FoodViewHolder>() {
-
-    var foodItem:FoodRoutineObjectData = foodItem
-
+class FoodRoutineFlexibleItem constructor(var foodItem: FoodRoutineObjectData): AbstractFlexibleItem<FoodRoutineFlexibleItem.FoodViewHolder>() {
 
 
     override fun bindViewHolder(adapter: FlexibleAdapter<out IFlexible<*>>?, holder: FoodViewHolder?, position: Int, payloads: MutableList<Any?>?) {

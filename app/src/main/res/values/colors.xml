@@ -17,6 +17,7 @@
     <color name="nibu_background_grey_light">#fafafa</color>
     <color name="nibu_gray_divider">#cfd8dc</color>
     <color name="nibu_gray_50">#eceff1</color>
+    <color name="nibu_nice_gray">#6D757C</color>
 
 
 </resources>
