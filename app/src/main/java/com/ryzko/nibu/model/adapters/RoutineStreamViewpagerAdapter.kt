@@ -3,6 +3,7 @@ package com.ryzko.nibu.model.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.view.ViewGroup
 import com.ryzko.nibu.model.rest.routines.BaseRoutineObjectData
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import com.ryzko.nibu.view.fragments.RoutineStreamPageFragment
@@ -44,7 +45,9 @@ class RoutineStreamViewpagerAdapter(fragmentManager: FragmentManager) :
     }
 
     override fun getItem(position: Int): Fragment {
-        return RoutineStreamPageFragment.newInstance(foodList[position])
+        var res:RoutineStreamPageFragment = RoutineStreamPageFragment.newInstance()
+        res.updateData(foodList[position])
+        return res
     }
 
     override fun getCount(): Int {

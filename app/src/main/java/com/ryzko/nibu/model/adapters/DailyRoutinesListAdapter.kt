@@ -3,9 +3,7 @@ package com.ryzko.nibu.model.adapters
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.ryzko.nibu.R
 import com.ryzko.nibu.model.uiobjects.HomeListObject
-import com.ryzko.nibu.view.activities.DashboardActivity
-import com.ryzko.nibu.view.activities.FoodRoutineActivity
+import com.ryzko.nibu.view.activities.RoutineStreamActivity
 
 /**
  * Created by Marcin Ryzko on 23.11.2017.
@@ -76,7 +73,7 @@ class DailyRoutinesListAdapter(private val list:List<HomeListObject>): RecyclerV
             //set the onclick listener for the singlt list item
             itemView.setOnClickListener {v -> run{
                 if (data.type == "food"){
-                    v!!.context.startActivity(Intent(v.context, FoodRoutineActivity::class.java))
+                    v!!.context.startActivity(Intent(v.context, RoutineStreamActivity::class.java))
                 }
 
             } }

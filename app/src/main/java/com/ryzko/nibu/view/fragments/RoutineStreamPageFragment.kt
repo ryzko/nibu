@@ -27,6 +27,12 @@ class RoutineStreamPageFragment : Fragment() {
 
     private var mListener: OnFragmentInteractionListener? = null
 
+    private lateinit var streamObject: RoutineStreamViewpagerAdapter.DayData
+
+    fun updateData(obj:RoutineStreamViewpagerAdapter.DayData){
+        streamObject = obj;
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -75,8 +81,7 @@ class RoutineStreamPageFragment : Fragment() {
     companion object {
         // TODO: Rename parameter arguments, choose names that match
 
-        fun newInstance(dataObject: RoutineStreamViewpagerAdapter.DayData): RoutineStreamPageFragment {
-            var dayData = dataObject
+        fun newInstance(): RoutineStreamPageFragment {
             return RoutineStreamPageFragment()
         }
     }
