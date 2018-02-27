@@ -33,7 +33,7 @@
         <activity android:name=".view.activities.LoginActivity" />
         <activity android:name=".view.activities.RegisterActivity" />
         <activity android:name=".view.activities.BabiesListActivity" />
-        <activity android:name=".view.activities.FoodRoutineActivity" />
+        <activity android:name=".view.activities.RoutineStreamActivity" />
         <activity android:name=".view.activities.FoodRoutineBreastfeedingDetailsActivity" />
     </application>
 

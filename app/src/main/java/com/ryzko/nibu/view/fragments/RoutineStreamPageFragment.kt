@@ -8,18 +8,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
+import com.ryzko.nibu.model.adapters.RoutineStreamViewpagerAdapter
 
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [FoodRoutinePageFragment.OnFragmentInteractionListener] interface
+ * [RoutineStreamPageFragment.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [FoodRoutinePageFragment.newInstance] factory method to
+ * Use the [RoutineStreamPageFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FoodRoutinePageFragment : Fragment() {
+class RoutineStreamPageFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var mParam1: String? = null
@@ -34,7 +34,7 @@ class FoodRoutinePageFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_routine_page, container, false)
+        return inflater.inflate(R.layout.fragment_routine_stream_page, container, false)
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -75,9 +75,9 @@ class FoodRoutinePageFragment : Fragment() {
     companion object {
         // TODO: Rename parameter arguments, choose names that match
 
-        fun newInstance(foodRoutineObject:FoodRoutineObjectData): FoodRoutinePageFragment {
-            val fragment = FoodRoutinePageFragment()
-            return fragment
+        fun newInstance(dataObject: RoutineStreamViewpagerAdapter.DayData): RoutineStreamPageFragment {
+            var dayData = dataObject
+            return RoutineStreamPageFragment()
         }
     }
 }// Required empty public constructor

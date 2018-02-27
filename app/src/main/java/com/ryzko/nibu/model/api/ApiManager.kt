@@ -62,16 +62,17 @@ object ApiManager {
                 volume = foodyObj.volume.toString(),
                 weight = foodyObj.weight.toString()
                 ).map {
-            result -> FoodRoutineObjectData(result.id,
-                result.baby_id,
-                result.baby_sid,
-                result.type,
-                result.breast_side,
-                result.breastfeeding_time_minutes,
-                result.bottle_milk_type,
-                result.start_time, result.end_time,
-                result.volume,
-                result.weight)
+            result -> FoodRoutineObjectData(id = result.id,
+                baby_id = result.baby_id,
+                baby_sid = result.baby_sid,
+                type = result.type,
+                breast_side = result.breast_side,
+                breastfeeding_time_minutes = result.breastfeeding_time_minutes,
+                bottle_milk_type = result.bottle_milk_type,
+                start_time =  result.start_time,
+                end_time = result.end_time,
+                volume = result.volume,
+                weight = result.weight)
         }
     }
 
