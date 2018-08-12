@@ -13,6 +13,12 @@ import com.ryzko.nibu.view.fragments.DashboardBodyHealthFragment
 import com.ryzko.nibu.view.fragments.DashboardUserFragment
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+import android.util.TypedValue
+import android.util.DisplayMetrics
+import android.view.ViewGroup
+import android.support.design.internal.BottomNavigationMenuView
+import android.view.View
+
 
 class DashboardActivity : AppCompatActivity(), DashboardDailyRoutinesFragment.OnFragmentInteractionListener, DashboardUserFragment.OnFragmentInteractionListener, DashboardBodyHealthFragment.OnFragmentInteractionListener  {
 
@@ -71,6 +77,18 @@ class DashboardActivity : AppCompatActivity(), DashboardDailyRoutinesFragment.On
         setSupportActionBar(toolbar)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
+        val menuView = navigation.getChildAt(0) as BottomNavigationMenuView
+        for (i in 0 until menuView.childCount) {
+            val iconView = menuView.getChildAt(i).findViewById<View>(android.support.design.R.id.icon)
+            iconView.y = 20F
+
+            val layoutParams = iconView.getLayoutParams()
+            val displayMetrics = resources.displayMetrics
+            layoutParams.height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, displayMetrics).toInt()
+            layoutParams.width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20f, displayMetrics).toInt()
+            iconView.setLayoutParams(layoutParams)
+        }
 
     }
 

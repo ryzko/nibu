@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/nibu_accent</item>
         <item name="android:toolbarStyle">@style/ToolbarTheme</item>
         <item name="android:actionBarStyle">@style/ToolbarTheme</item>
-
+        <item name="android:windowActionBarOverlay">true</item>
         <item name="android:textColorPrimary">@color/nibu_gray_dark</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowActionBar">true</item>

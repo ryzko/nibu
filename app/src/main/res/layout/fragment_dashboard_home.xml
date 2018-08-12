@@ -18,8 +18,9 @@
             android:id="@+id/home_panel"
             android:layout_width="match_parent"
             android:layout_height="128dp"
-            android:elevation="2dp"
             android:background="@color/nibu_white"
+            android:elevation="1dp"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -28,6 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Some Text" />
+
+            <com.ryzko.nibu.view.components.DatePickerComponent
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.ryzko.nibu.view.components.DatePickerComponent>
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

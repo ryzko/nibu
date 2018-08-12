@@ -14,10 +14,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbar_height"
-        android:elevation="4dp"
+        android:background="#FAFAFA"
+        android:elevation="0dp"
         android:theme="@style/ToolbarTheme">
 
         <android.support.constraint.ConstraintLayout
+            android:background="#FAFAFA"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -26,8 +28,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:backgroundTint="#FAFAFA"
                 android:text="@string/application.name"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
@@ -45,7 +47,7 @@
         android:layout_marginEnd="0dp"
         android:layout_marginStart="0dp"
         android:background="@android:color/white"
-        android:elevation="8dp"
+        android:elevation="1dp"
         app:itemIconTint="@color/bottom_nav_icon_color_selector"
         app:itemTextColor="@color/bottom_nav_icon_color_selector"
         app:layout_constraintBottom_toBottomOf="parent"

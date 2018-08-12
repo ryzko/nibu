@@ -13,7 +13,7 @@
         android:backgroundTint="@color/nibu_white"
         android:layout_margin="4dp"
 
-        app:cardElevation="2dp">
+        app:cardElevation="1dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -21,13 +21,11 @@
 
             <ImageView
                 android:id="@+id/iv_homeList_item_img"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:tint="@color/nibu_gray_light"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="12dp"
+                android:tint="@color/nibu_gray_dark"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,15 +33,11 @@
                 android:id="@+id/tv_homeList_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="18dp"
                 android:textColor="@color/nibu_gray"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_homeList_item_img" />
+                app:layout_constraintStart_toEndOf="@+id/iv_homeList_item_img"
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
 </LinearLayout>

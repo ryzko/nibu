@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/component_date_picker"
+    android:layout_height="48dp">
+
+    <ImageButton
+        android:id="@+id/prev_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="4dp"
+        android:background="?android:selectableItemBackground"
+        android:src="@drawable/ic_chevron_left_black_24dp"
+        android:text="#"
+        android:tint="@color/nibu_gray" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:checkedButton="@+id/btn_right"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <RadioButton
+                android:id="@+id/btn_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+
+                android:background="@drawable/toogle_button_background_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/toogle_button_icon_selector"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:text="07 Aug"
+                android:textAlignment="gravity"
+                android:textColor="@drawable/toogle_button_textcolor_selector" />
+
+            <RadioButton
+                android:id="@+id/btn_mid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+
+                android:background="@drawable/toogle_button_background_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/toogle_button_icon_selector"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingBottom="4dp"
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:text="Yesterday"
+                android:textAlignment="gravity"
+                android:textColor="@drawable/toogle_button_textcolor_selector" />
+
+            <RadioButton
+                android:id="@+id/btn_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/toogle_button_background_selector"
+                android:button="@null"
+                android:drawableRight="@drawable/toogle_button_icon_selector"
+                android:gravity="center_vertical|center_horizontal"
+                android:paddingBottom="4dp"
+
+                android:paddingEnd="8dp"
+                android:paddingStart="8dp"
+                android:paddingTop="4dp"
+                android:text="Today"
+                android:textAlignment="gravity"
+                android:textColor="@drawable/toogle_button_textcolor_selector" />
+        </RadioGroup>
+
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:id="@+id/next_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="4dp"
+        android:background="?android:selectableItemBackground"
+        android:contentDescription="TODO"
+        android:foregroundTint="@color/nibu_gray"
+        android:src="@drawable/ic_chevron_right_black_24dp"
+        android:tint="@color/nibu_gray" />
+
+</merge>

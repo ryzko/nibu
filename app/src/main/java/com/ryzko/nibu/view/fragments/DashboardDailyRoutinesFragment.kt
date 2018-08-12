@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.LinearLayoutCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -49,7 +51,7 @@ class DashboardDailyRoutinesFragment : Fragment() {
         val adapter = DailyRoutinesListAdapter(list)
         var grid:RecyclerView = view.findViewById(R.id.home_grid)
 
-        grid.layoutManager = GridLayoutManager(context, 2)
+        grid.layoutManager = LinearLayoutManager(context)
         grid.adapter = adapter
 
 
