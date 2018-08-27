@@ -1,8 +1,10 @@
 package com.ryzko.nibu.model.api
 
 import com.ryzko.nibu.model.rest.BabyObjectData
+import com.ryzko.nibu.model.rest.GroupedByDayObject
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
+import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -85,5 +87,36 @@ interface NibuApiService {
     fun getAllFoodRoutines(
             @Header("Authorization") token:String,
             @Path("baby_sid") baby_sid:String):Observable<MutableList<FoodRoutineObjectData>>
+
+    @Headers("Accept: application/json")
+    @FormUrlEncoded
+    @POST("activity_routines")
+    fun addActivityRoutine(
+            @Header("Authorization") token:String,
+            @Field("baby_id") baby_id:Int,
+            @Field("baby_sid") baby_sid:String,
+            @Field("activity_type") activity_type:String,
+            @Field("activity_start") activity_start:String,
+            @Field("activity_end") activity_end:String,
+            @Field("activity_image") activity_image:String,
+            @Field("activity_comment") activity_comment:String,
+            @Field("activity_rating") activity_rating:Int,
+            @Field("item_type") item_type:String,
+            @Field("item_kind") item_kind:String,
+            @Field("item_weight") item_weight:String,
+            @Field("item_volume") item_volume:String
+    ):Observable<ActivityRoutineObjectData>
+
+    @Headers("Accept: application/json")
+    @GET("activity_routines/{baby_sid}")
+    fun getActivityRoutines(
+            @Header("Authorization") token:String,
+            @Path("baby_sid") baby_sid:String):Observable<MutableList<ActivityRoutineObjectData>>
+
+    @Headers("Accept: application/json")
+    @GET("activity_routines/{baby_sid}")
+    fun getActivityRoutinesByDay(
+            @Header("Authorization") token:String,
+            @Path("baby_sid") baby_sid:String):Observable<MutableList<GroupedByDayObject>>
 
 }

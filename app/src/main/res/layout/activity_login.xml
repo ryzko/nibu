@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+
     tools:ignore="MissingPrefix"
     tools:context="com.ryzko.nibu.view.activities.LoginActivity">
 
@@ -47,13 +47,12 @@
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/message_96px"
             android:drawableTint="@color/nibu_accent"
-            android:elevation="1dp"
             android:ems="10"
             android:hint="@string/activity.login.textview.email.hint"
             android:inputType="textEmailAddress"
             android:labelFor="@+id/tv_username"
             android:text="m.ryzko@gmail.com"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/nibu_gray"
             android:textColorLink="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,13 +68,12 @@
             android:drawablePadding="8dp"
             android:drawableStart="@drawable/key_96px"
             android:drawableTint="@color/nibu_accent"
-            android:elevation="1dp"
             android:ems="10"
             android:hint="@string/activity.login.textview.password.hint"
             android:inputType="textPassword"
             android:labelFor="@+id/tv_password"
             android:text="password"
-            android:textColor="@color/primaryColor"
+            android:textColor="@color/nibu_gray"
             android:textColorLink="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +87,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/rounded_raspberry_button"
-            android:foreground="?attr/selectableItemBackground"
+
             android:text="@string/action_sign_in_short"
             android:textColor="@color/nibu_white"
             android:textColorLink="@color/colorAccent"
@@ -111,7 +109,6 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

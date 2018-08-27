@@ -63,14 +63,12 @@
             app:layout_constraintTop_toBottomOf="@+id/textview_solid_side" />
 
         <View
-            android:id="@+id/view4"
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:background="@color/nibu_gray_divider"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <View
-            android:id="@+id/view3"
             android:layout_width="8dp"
             android:layout_height="0dp"
             android:background="@android:color/holo_blue_light"
@@ -79,7 +77,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView3"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
@@ -160,7 +157,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"
@@ -241,7 +237,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView2"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="16dp"

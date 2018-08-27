@@ -6,8 +6,6 @@
     <color name="colorDarkAccent">#9b004e</color>
 
 
-    <color name="primaryColor">#eeeeee</color>
-
     <color name="nibu_toolbar_white">#FFFFFF</color>
     <color name="nibu_white">#ffffff</color>
     <color name="nibu_accent">#f50057</color>
@@ -17,7 +15,6 @@
     <color name="nibu_background_grey_light">#fafafa</color>
     <color name="nibu_gray_divider">#cfd8dc</color>
     <color name="nibu_gray_50">#eceff1</color>
-    <color name="nibu_nice_gray">#6D757C</color>
 
 
 </resources>

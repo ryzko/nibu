@@ -8,12 +8,12 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.ryzko.nibu.R
+import com.ryzko.nibu.R.id.login_container
+import com.ryzko.nibu.R.id.login_progress
 import com.ryzko.nibu.model.adapters.BabiesListAdapter
 import com.ryzko.nibu.model.api.ApiManager
-import com.ryzko.nibu.model.rest.BabyObjectData
-import com.ryzko.nibu.model.rest.LoginObjectData
-import com.ryzko.nibu.model.rest.TokenObjectData
-import com.ryzko.nibu.model.rest.UserObjectData
+import com.ryzko.nibu.model.rest.*
+import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
 import com.ryzko.nibu.model.user.UserData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -103,6 +103,21 @@ class LoginActivity : AppCompatActivity() {
         UserData.babyList = list
         UserData.selectedBaby = list.get(0)
 
+
+        ApiManager.getActivityRoutinesByDay()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ alist: MutableList<GroupedByDayObject> ->
+                    if (alist != null) getActivities(alist)
+                }, { error: Throwable? ->
+                    if (error != null) onRequestFailure(error)
+
+                })
+
+    }
+
+    fun getActivities(list:MutableList<GroupedByDayObject>){
+        var ls = list
     }
 
 

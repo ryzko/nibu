@@ -35,8 +35,4 @@
         <item name="colorControlHighlight">@color/nibu_toolbar_white</item>
     </style>
 
-    <style name="NibuTabLayoutText" parent="TextAppearance.Design.Tab">
-        <item name="android:textSize">16sp</item>
-    </style>
-
 </resources>

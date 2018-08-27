@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.nshmura.recyclertablayout.RecyclerTabLayout
+import com.ogaclejapan.smarttablayout.SmartTabLayout
 import com.ryzko.nibu.R
 import com.ryzko.nibu.model.adapters.RoutineStreamViewpagerAdapter
 import com.ryzko.nibu.model.api.ApiManager
@@ -25,25 +26,27 @@ class RoutineStreamActivity : AppCompatActivity(), OnFragmentInteractionListener
     }
 
 
-    private lateinit var recyclerTabLayout: RecyclerTabLayout
+    private lateinit var recyclerTabLayout: SmartTabLayout
     private lateinit var pagerAdapter: RoutineStreamViewpagerAdapter
     private lateinit var viewPager: ViewPager
 
 
     private var foodData:MutableList<BaseRoutineObjectData> = mutableListOf(
-            FoodRoutineObjectData( start_time = "2011-07-06 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-06 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-08 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-07 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-09 19:30", weight = 1),
-            FoodRoutineObjectData( start_time = "2011-07-09 19:30", weight = 1)
+            FoodRoutineObjectData( start_time = "2018-08-23 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-22 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-21 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-23 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-23 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-20 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-19 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-18 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-17 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-16 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-15 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-14 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-13 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2018-08-12 19:30", weight = 1),
+            FoodRoutineObjectData( start_time = "2011-07-11 19:30", weight = 1)
             )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +59,7 @@ class RoutineStreamActivity : AppCompatActivity(), OnFragmentInteractionListener
         viewPager.adapter = pagerAdapter
 
         recyclerTabLayout = this.findViewById(R.id.recyclerTabLayout)
-        recyclerTabLayout.setUpWithViewPager(viewPager)
+        recyclerTabLayout.setViewPager(viewPager)
         viewPager.setCurrentItem(foodData.size-1,false)
 
         menu_breast.setOnClickListener {

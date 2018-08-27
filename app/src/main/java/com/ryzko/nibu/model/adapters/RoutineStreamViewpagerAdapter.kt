@@ -3,10 +3,16 @@ package com.ryzko.nibu.model.adapters
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.text.format.DateUtils
 import android.view.ViewGroup
 import com.ryzko.nibu.model.rest.routines.BaseRoutineObjectData
 import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 import com.ryzko.nibu.view.fragments.RoutineStreamPageFragment
+import org.joda.time.format.DateTimeFormat
+import java.util.*
+import org.joda.time.DateTime
+
+
 
 /**
  * Created by Marcin Ryzko on 14.02.2018.
@@ -16,7 +22,9 @@ import com.ryzko.nibu.view.fragments.RoutineStreamPageFragment
 
 class RoutineStreamViewpagerAdapter(fragmentManager: FragmentManager) :
         FragmentStatePagerAdapter(fragmentManager) {
+    var cal = Calendar.getInstance()!!
 
+    var fmt = DateTimeFormat.forPattern("dd MMM")
     lateinit var sortedList:HashMap<String, MutableList<BaseRoutineObjectData>>
     var foodList:MutableList<DayData> = mutableListOf()
 
@@ -39,7 +47,7 @@ class RoutineStreamViewpagerAdapter(fragmentManager: FragmentManager) :
             val obj = DayData(key,value)
             foodList.add(obj)
         }
-        foodList.reverse();
+        //foodList.reverse();
         notifyDataSetChanged()
 
     }
@@ -55,6 +63,12 @@ class RoutineStreamViewpagerAdapter(fragmentManager: FragmentManager) :
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        return foodList[position].date
+        val date = DateTime.parse(foodList[position].date, DateTimeFormat.forPattern("yyyy-MM-dd"))
+        return DateUtils.getRelativeTimeSpanString(
+                date.millis,
+                DateTime.now().millis,
+                DateUtils.DAY_IN_MILLIS,
+                DateUtils.FORMAT_SHOW_DATE).toString()
+        //return foodList[position].date
     }
 }
