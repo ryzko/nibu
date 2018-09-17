@@ -2,42 +2,37 @@ package com.ryzko.nibu.view.activities
 
 import android.content.Context
 import android.content.Intent
-import android.opengl.Visibility
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
+import com.ryzko.nibu.Nibu
 import com.ryzko.nibu.R
-import com.ryzko.nibu.R.id.login_container
-import com.ryzko.nibu.R.id.login_progress
-import com.ryzko.nibu.model.adapters.BabiesListAdapter
 import com.ryzko.nibu.model.api.ApiManager
 import com.ryzko.nibu.model.rest.*
-import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
+import com.ryzko.nibu.model.user.Credentials
+import com.ryzko.nibu.model.user.UserCredentials
 import com.ryzko.nibu.model.user.UserData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_babies_list.*
 import kotlinx.android.synthetic.main.activity_login.*
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
 class LoginActivity : AppCompatActivity() {
 
-   // lateinit var userData:UserData
-   // lateinit var apiManager:ApiManager
+    // lateinit var userData:UserData
+    // lateinit var apiManager:ApiManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         //userData = UserData.instance
-       // apiManager = ApiManager.instance
-
-        setDrawables()
+        // apiManager = ApiManager.instance
 
 
-        btn_login.setOnClickListener({
+        btn_login.setOnClickListener {
             val loginObj = LoginObjectData(tv_username.text.toString(), tv_password.text.toString())
             login_container.visibility = View.GONE
             login_progress.visibility = View.VISIBLE
@@ -50,14 +45,15 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }, { error: Throwable? ->
                         if (error != null) {
-                            onRequestFailure(error)
+                            onLoginFailure()
                         }
                     })
-        })
+        }
     }
 
 
     private fun onLoginSuccess(token: TokenObjectData) {
+        Nibu.showShortToast("Login success!")
         UserData.tokenObj = token
         ApiManager.user(token)
                 .subscribeOn(Schedulers.io())
@@ -67,57 +63,49 @@ class LoginActivity : AppCompatActivity() {
                     user: UserObjectData? ->
                     if (user != null) onUserSuccess(user)
                 }, { error: Throwable? ->
-                    if (error != null) onRequestFailure(error)
+                    if (error != null) onUserFailure()
 
                 })
     }
 
-    private fun onRequestFailure(error: Throwable) {
+    private fun onUserFailure() {
+        Nibu.showShortToast("User GET Fail!")
+    }
+
+    private fun onLoginFailure() {
+        Nibu.showShortToast("Login Fail!")
         login_container.visibility = View.VISIBLE
         login_progress.visibility = View.GONE
     }
 
     private fun onUserSuccess(user: UserObjectData) {
         UserData.userObj = user
-
-
-        startActivity(Intent(this, DashboardActivity::class.java))
-
         getBabies()
     }
 
-    fun getBabies() {
+    private fun getBabies() {
         ApiManager.getAllBabies()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ list: ArrayList<BabyObjectData> ->
-                    if (list != null) getBabies(list)
-                }, { error: Throwable? ->
-                    if (error != null) onRequestFailure(error)
+                .subscribe({ this.getBabies(it) }) { error: Throwable? ->
+                    if (error != null) onLoginFailure()
 
-                })
+                }
     }
 
-    fun getBabies(list: MutableList<BabyObjectData>) {
+    private fun getBabies(list: MutableList<BabyObjectData>) {
 
+        Nibu.showShortToast("Login Fail!")
         UserData.babyList = list
-        UserData.selectedBaby = list.get(0)
+        if (UserData.selectedBabySid == "") UserData.selectedBabySid = list[0].sid
+        val selectedBaby: BabyObjectData? = list.find { babyObjectData -> babyObjectData.sid == UserData.selectedBabySid }
+        if (selectedBaby != null) UserData.selectedBaby = selectedBaby
 
+        val credentials = Credentials(UserData.userObj, UserData.tokenObj, UserData.selectedBabySid)
+        UserCredentials(this.applicationContext).save(credentials)
+        startActivity(Intent(this, DashboardActivity::class.java))
+        finish()
 
-        ApiManager.getActivityRoutinesByDay()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ alist: MutableList<GroupedByDayObject> ->
-                    if (alist != null) getActivities(alist)
-                }, { error: Throwable? ->
-                    if (error != null) onRequestFailure(error)
-
-                })
-
-    }
-
-    fun getActivities(list:MutableList<GroupedByDayObject>){
-        var ls = list
     }
 
 
@@ -125,23 +113,6 @@ class LoginActivity : AppCompatActivity() {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
-    private fun setDrawables() {
-
-
-        val loginImg = ContextCompat.getDrawable(this.baseContext, R.drawable.message_96px)
-        val h = loginImg!!.intrinsicHeight
-        val w = loginImg.intrinsicWidth
-        loginImg.setBounds(0, 0, 64, 64)
-
-        val passImg = ContextCompat.getDrawable(this.baseContext, R.drawable.key_96px)
-        val h1 = passImg!!.intrinsicHeight
-        val w1 = passImg.intrinsicWidth
-        passImg.setBounds(0, 0, 64, 64)
-
-        tv_username.setCompoundDrawables(loginImg, null, null, null)
-        tv_password.setCompoundDrawables(passImg, null, null, null)
-
-    }
 
 
 }

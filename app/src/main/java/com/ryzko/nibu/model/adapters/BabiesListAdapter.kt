@@ -15,7 +15,7 @@ import com.ryzko.nibu.model.rest.BabyObjectData
  * http://ryzko.com
  */
 
-class BabiesListAdapter(val list:List<BabyObjectData>):RecyclerView.Adapter<BabiesListAdapter.ViewHolder>() {
+class BabiesListAdapter(val list: List<BabyObjectData>) : RecyclerView.Adapter<BabiesListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BabiesListAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_view_baby, parent, false)
@@ -40,9 +40,9 @@ class BabiesListAdapter(val list:List<BabyObjectData>):RecyclerView.Adapter<Babi
             babyBirth.text = data.birth_date
 
             //set the onclick listener for the singlt list item
-            itemView.setOnClickListener({
+            itemView.setOnClickListener {
                 Log.e("ItemClicked", data.name)
-            })
+            }
         }
     }
 }

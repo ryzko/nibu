@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/nibu_background_grey_light"
+    android:background="@color/nibu_background"
     tools:context="com.ryzko.nibu.view.activities.DashboardActivity"
     tools:ignore="MissingPrefix">
 
@@ -19,9 +19,9 @@
         android:theme="@style/ToolbarTheme">
 
         <android.support.constraint.ConstraintLayout
-            android:background="#FAFAFA"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#FAFAFA">
 
             <TextView
                 fontPath="fonts/Comfortaa-Bold.ttf"
@@ -30,7 +30,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#FAFAFA"
-                android:text="@string/application.name"
+                android:text="@string/application_name"
                 android:textColor="@color/colorAccent"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"

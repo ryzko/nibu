@@ -6,19 +6,19 @@ package com.ryzko.nibu.model.rest.routines
  * http://ryzko.com
  */
 
-class ActivityRoutineObjectData(val id:Int,
-                                val baby_id:Int,
-                                val baby_sid:String,
-                                val activity_type:String,
-                                val activity_start:String,
-                                val activity_end:String,
-                                val activity_image:String,
-                                val activity_comment:String,
-                                val activity_rating:Int,
-                                val item_type:String,
-                                val item_kind:String,
-                                val item_weight:String,
-                                val item_volume:String,
-                                val created_at:String,
-                                val updated_at:String) {
+class ActivityRoutineObjectData(val id:Int= 0,
+                                val baby_id:Int = 0,
+                                val baby_sid:String = "null",
+                                val activity_type:String = "null",
+                                val activity_start:String = "null",
+                                val activity_end:String = "null",
+                                val activity_image:String = "null",
+                                val activity_comment:String = "null",
+                                val activity_rating:Int = 0,
+                                val item_type:String = "null",
+                                val item_kind:String = "null",
+                                val item_weight:String = "null",
+                                val item_volume:String = "null",
+                                val created_at:String = "null",
+                                val updated_at:String = "null") {
 }

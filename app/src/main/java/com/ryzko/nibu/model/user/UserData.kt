@@ -1,12 +1,8 @@
 package com.ryzko.nibu.model.user
 
-import android.content.Context
-import com.ryzko.nibu.Nibu
-import com.ryzko.nibu.model.adapters.FoodRoutinesListAdapter
 import com.ryzko.nibu.model.rest.BabyObjectData
 import com.ryzko.nibu.model.rest.TokenObjectData
 import com.ryzko.nibu.model.rest.UserObjectData
-import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
 
 /**
  * Created by Marcin Ryzko on 19.11.2017.
@@ -20,7 +16,11 @@ object UserData{
     lateinit var tokenObj:TokenObjectData
     lateinit var selectedBaby: BabyObjectData
     lateinit var babyList:MutableList<BabyObjectData>
-    lateinit var sectionedFoodList:MutableList<FoodRoutinesListAdapter.Section>
+    lateinit var credentials: Credentials
+
+    var selectedBabySid:String = ""
+    var activityDataService: ActivityRoutineDataService = ActivityRoutineDataService()
+
 
     /*companion object {
         lateinit var instance: UserData

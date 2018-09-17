@@ -4,14 +4,13 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.text.format.DateUtils
-import android.view.ViewGroup
-import com.ryzko.nibu.model.rest.routines.BaseRoutineObjectData
-import com.ryzko.nibu.model.rest.routines.FoodRoutineObjectData
+import com.ryzko.nibu.model.activities.ActivityDayData
+import com.ryzko.nibu.model.user.ActivityRoutineDataService
+import com.ryzko.nibu.model.user.UserData
+import com.ryzko.nibu.model.utils.DateParseUtils
 import com.ryzko.nibu.view.fragments.RoutineStreamPageFragment
-import org.joda.time.format.DateTimeFormat
-import java.util.*
 import org.joda.time.DateTime
-
+import org.joda.time.Days
 
 
 /**
@@ -22,53 +21,67 @@ import org.joda.time.DateTime
 
 class RoutineStreamViewpagerAdapter(fragmentManager: FragmentManager) :
         FragmentStatePagerAdapter(fragmentManager) {
-    var cal = Calendar.getInstance()!!
 
-    var fmt = DateTimeFormat.forPattern("dd MMM")
-    lateinit var sortedList:HashMap<String, MutableList<BaseRoutineObjectData>>
-    var foodList:MutableList<DayData> = mutableListOf()
+    private var babyBirthDate: String = UserData.selectedBaby.birth_date
+    private var startDate: DateTime = DateParseUtils.getDateTime(babyBirthDate, DateParseUtils.YYYYMMDD_HHMMSS)
+    private var todayDate: DateTime = DateTime.now()
+    lateinit var datesList: MutableList<DateTime>
+    lateinit var activityRoutineDataService: ActivityRoutineDataService
 
-    class DayData(var date:String, var obj: MutableList<BaseRoutineObjectData>)
+    private fun propagateDates() {
 
-    fun addData(foodData: MutableList<BaseRoutineObjectData>){
-        sortedList = hashMapOf();
-        for (obj in foodData){
-            val date:String = (obj as FoodRoutineObjectData).start_time.substring(0,10);
+        datesList = mutableListOf()
+        var datesLen = Days.daysBetween(startDate.withTimeAtStartOfDay(), todayDate.withTimeAtStartOfDay()).days
 
-            if(sortedList[date]==null) {
-                sortedList[date] = mutableListOf()
-            }
-            sortedList[date]?.add(obj)
-
+        for (i in 0..datesLen) {
+            datesList.add(DateTime.now().minusDays(i))
         }
-        val sorted = sortedList.toSortedMap()
-
-        for ((key, value) in sorted) {
-            val obj = DayData(key,value)
-            foodList.add(obj)
-        }
-        //foodList.reverse();
-        notifyDataSetChanged()
-
+        datesList.reverse()
     }
 
+    fun initData(activityRoutineDataService: ActivityRoutineDataService) {
+        propagateDates()
+        this.activityRoutineDataService = activityRoutineDataService
+        notifyDataSetChanged()
+    }
+
+
+    fun getIndexByDate(date: DateTime): Int {
+
+        var result = -1
+        for (i in datesList.indices) {
+            val d = DateParseUtils.getString(datesList[i], DateParseUtils.yyyyMMdd)
+            if (DateParseUtils.getString(date, DateParseUtils.yyyyMMdd) == d) {
+                result = i
+                break
+            }
+
+        }
+        return result
+    }
+
+
     override fun getItem(position: Int): Fragment {
-        var res:RoutineStreamPageFragment = RoutineStreamPageFragment.newInstance()
-        res.updateData(foodList[position])
-        return res
+        var fragment: RoutineStreamPageFragment = RoutineStreamPageFragment.newInstance()
+        fragment.updateData(findActivityByDate(position))
+        return fragment
+    }
+
+    fun findActivityByDate(position: Int): ActivityDayData? {
+        var date: DateTime = datesList[position]
+        return activityRoutineDataService.getDayData(DateParseUtils.getString(date, DateParseUtils.yyyyMMdd))
     }
 
     override fun getCount(): Int {
-        return foodList.size
+        return datesList.size
     }
 
     override fun getPageTitle(position: Int): CharSequence {
-        val date = DateTime.parse(foodList[position].date, DateTimeFormat.forPattern("yyyy-MM-dd"))
+
         return DateUtils.getRelativeTimeSpanString(
-                date.millis,
+                datesList[position].millis,
                 DateTime.now().millis,
                 DateUtils.DAY_IN_MILLIS,
                 DateUtils.FORMAT_SHOW_DATE).toString()
-        //return foodList[position].date
     }
 }

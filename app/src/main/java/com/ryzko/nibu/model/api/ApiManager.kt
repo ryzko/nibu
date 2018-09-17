@@ -51,44 +51,9 @@ object ApiManager {
         }
     }
 
-    fun addFoodRoutine(foodyObj:FoodRoutineObjectData): Observable<FoodRoutineObjectData> {
-        return service.addFoodRoutine(PREFIX + userData.tokenObj.access_token,
-                baby_sid = foodyObj.baby_sid,
-                type = foodyObj.type,
-                breast_side = foodyObj.breast_side,
-                breastfeeding_time_minutes = foodyObj.breastfeeding_time_minutes,
-                bottle_milk_type = foodyObj.bottle_milk_type,
-                start_time = foodyObj.start_time,
-                end_time = foodyObj.end_time,
-                volume = foodyObj.volume.toString(),
-                weight = foodyObj.weight.toString()
-                ).map {
-            result -> FoodRoutineObjectData(
-                id = result.id,
-                baby_id = result.baby_id,
-                baby_sid = result.baby_sid,
-                type = result.type,
-                breast_side = result.breast_side,
-                breastfeeding_time_minutes = result.breastfeeding_time_minutes,
-                bottle_milk_type = result.bottle_milk_type,
-                start_time =  result.start_time,
-                end_time = result.end_time,
-                volume = result.volume,
-                weight = result.weight)
-        }
-    }
-
-    fun getAllFoodRoutines(): Observable<MutableList<FoodRoutineObjectData>> {
-        val token:String = PREFIX + userData.tokenObj.access_token
-        val babySID:String = userData.selectedBaby.sid
-        return service.getAllFoodRoutines(token, babySID)
-                .flatMap { t: MutableList<FoodRoutineObjectData> ->  Observable.fromArray(t)}
-    }
-
 
     fun addActivityRoutine(activityObject:ActivityRoutineObjectData): Observable<ActivityRoutineObjectData> {
         return service.addActivityRoutine(PREFIX + userData.tokenObj.access_token,
-                baby_id = activityObject.baby_id,
                 baby_sid = activityObject.baby_sid,
                 activity_type = activityObject.activity_type,
                 activity_start = activityObject.activity_start,
@@ -127,12 +92,12 @@ object ApiManager {
                 .flatMap { t: MutableList<ActivityRoutineObjectData> ->  Observable.fromArray(t)}
     }
 
-    fun getActivityRoutinesByDay(): Observable<MutableList<GroupedByDayObject>> {
+    fun getActivityRoutinesByDay(): Observable<MutableList<MutableList<Any>>> {
         val token:String = PREFIX + userData.tokenObj.access_token
         val babySID:String = userData.selectedBaby.sid
         return service.getActivityRoutinesByDay(token, babySID)
                 .flatMap {
-                    t: MutableList<GroupedByDayObject> ->
+                    t: MutableList<MutableList<Any>> ->
                     Observable.fromArray(t)}
     }
 

@@ -44,23 +44,23 @@ class DailyRoutinesListAdapter(private val list:List<HomeListObject>): RecyclerV
             when(data.type){
                 "food" -> {
                     passImg = ContextCompat.getDrawable(itemView.context,R.drawable.baby_bottle_96px)
-                    title = itemView.resources.getString(R.string.activity_dashboard_routineslist_food)
+                    title = itemView.resources.getString(R.string.routine_list_feeding)
                 }
                 "sleep" -> {
                     passImg = ContextCompat.getDrawable(itemView.context,R.drawable.crib_96px)
-                    title = itemView.resources.getString(R.string.activity_dashboard_routineslist_sleep)
+                    title = itemView.resources.getString(R.string.routine_list_sleep)
                 }
                 "diaper" -> {
                     passImg = ContextCompat.getDrawable(itemView.context,R.drawable.nappy_96px)
-                    title = itemView.resources.getString(R.string.activity_dashboard_routineslist_diapers)
+                    title = itemView.resources.getString(R.string.routine_list_diapers)
                 }
                 "play" -> {
                     passImg = ContextCompat.getDrawable(itemView.context,R.drawable.sandbox_96px)
-                    title = itemView.resources.getString(R.string.activity_dashboard_routineslist_play)
+                    title = itemView.resources.getString(R.string.routine_list_physical_activity)
                 }
                 "walk" -> {
                     passImg = ContextCompat.getDrawable(itemView.context,R.drawable.mother_96px)
-                    title = itemView.resources.getString(R.string.activity_dashboard_routineslist_walks)
+                    title = itemView.resources.getString(R.string.routine_list_walks)
                 }
             }
 

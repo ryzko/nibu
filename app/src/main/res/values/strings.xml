@@ -1,41 +1,82 @@
 <resources>
-    <string name="application.name">nibu</string>
+    <string name="application_name">nibu</string>
 
     <!-- Strings related activity dashboard -->
-    <string name="activity.dashboard.toolbar.title">nibu</string>
-    <string name="activity.dashboard.navigation.routines">Daily routines</string>
-    <string name="activity.dashboard.navigation.health">Health</string>
-    <string name="activity.dashboard.navigation.settings">Settings</string>
+    <string name="routines_daily_routines">Daily routines</string>
+    <string name="routines_health">Health</string>
+    <string name="routines_settings">Settings</string>
+    <string name="routine_list_feeding">Feeding</string>
+    <string name="routine_list_sleep">Sleep</string>
+    <string name="routine_list_diapers">Diapers</string>
+    <string name="routine_list_physical_activity">Physical activity</string>
+    <string name="routine_list_walks">Walks</string>
+    <string name="activity_button_save">Save</string>
+    <string name="activity_breast_side">Breast side</string>
+    <string name="activity_breast_side_left">Left breast</string>
+    <string name="activity_breast_side_right">Right breast</string>
+    <string name="activity_breast_side_both">Both breasts</string>
+    <string name="activity_start_date">Start date:</string>
+    <string name="activity_end_date">End date:</string>
+    <string name="activity_start_time">Start time:</string>
+    <string name="activity_end_time">End time:</string>
+    <string name="activity_feeding_duration">Feeding duration:</string>
+    <string name="activity_add_breast_feeding">Add breast feeding</string>
+    <string name="activity_type_meal">Meal</string>
 
-    <string name="activity.dashboard.routineslist.food">Feeding</string>
-    <string name="activity.dashboard.routineslist.sleep">Sleep</string>
-    <string name="activity.dashboard.routineslist.diapers">Diapers</string>
-    <string name="activity.dashboard.routineslist.play">Play time</string>
-    <string name="activity.dashboard.routineslist.walks">Walks</string>
-
-    <string name="activity.dashboard.routineslist.foodList.breast.details.title">Food log</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.button_save">Save</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.breast_side">Breast side</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.breast_side.left">Left</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.breast_side.right">Right</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.start_date">Start date</string>
-    <string name="activity.dashboard.routineslist.foodList.breast.details.feeding_time">Feeding duration time</string>
 
     <!-- Strings related activity register -->
-    <string name="activity_register_title">Register</string>
-    <string name="activity_register_guestion">New to nibu?</string>
-    <string name="activity_register_btn">Sign up</string>
+    <string name="splash_screen_init">Initialization</string>
+    <string name="splash_screen_connection">Checking internet connection</string>
+    <string name="splash_screen_users_list">Getting user data</string>
+    <string name="splash_screen_babies_list">Getting babies info</string>
+    <string name="splash_screen_routines_list">Getting activities data</string>
+
+
+    <!-- Strings related activity register -->
+    <string name="register_title">Register</string>
+    <string name="register_question">New to nibu?</string>
+    <string name="register_sign_up">Sign up</string>
 
     <!-- Strings related activity login -->
-    <string name="activity.login.title">Sign in</string>
-    <string name="activity.login.textview.email.hint">Email</string>
-    <string name="activity.login.textview.password.hint">Password</string>
+    <string name="login_signup">Sign in</string>
+    <string name="login_email_hint">Email</string>
+    <string name="login_password_hint">Password</string>
     <string name="action_sign_in_short">Sign in</string>
 
     <!-- Strings related to menus -->
 
     <string name="title_main">Main activity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Strings related to Credentials -->
+    <string name="credentials_user_id">user_id</string>
+    <string name="credentials_user_name">user_name</string>
+    <string name="credentials_user_email">user_email</string>
+    <string name="credentials_user_sid">user_sid</string>
+
+    <string name="credentials_token_type">token_type</string>
+    <string name="credentials_token_expires">token_expires</string>
+    <string name="credentials_token_access">token_access</string>
+    <string name="credentials_token_refresh">token_refresh</string>
+
+    <string name="credentials_selected_baby_sid">selected_baby_sid</string>
+
+    <string name="credentials_default_value">default_value</string>
+
+    <!-- Metrics -->
+    <string name="min_short"> min </string>
+    <string name="hour_short"> h </string>
+    <string name="day_short"> d </string>
+
+    <string-array name="breast_side">
+        <item>Left breast</item>
+        <item>Right breast</item>
+        <item>Both breasts</item>
+    </string-array>
+    
+    <plurals name="number_of_weeks">
+        <item quantity="one">%1$s (%2$d week)</item>
+        <item quantity="many">%1$s (%2$d weeks)</item>
+        <item quantity="other">%1$s (%2$d weeks)</item>
+    </plurals>
 
 </resources>

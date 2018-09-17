@@ -4,16 +4,16 @@
     <item
         android:id="@+id/navigation_routines"
         android:icon="@drawable/ic_routines_bold_96px"
-        android:title="@string/activity.dashboard.navigation.routines" />
+        android:title="@string/routines_daily_routines" />
 
     <item
         android:id="@+id/navigation_health"
         android:icon="@drawable/ic_health_bold_96px"
-        android:title="@string/activity.dashboard.navigation.health" />
+        android:title="@string/routines_health" />
 
     <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings_bold_96px"
-        android:title="@string/activity.dashboard.navigation.settings" />
+        android:title="@string/routines_settings" />
 
 </menu>

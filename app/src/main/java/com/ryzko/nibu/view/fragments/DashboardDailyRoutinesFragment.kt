@@ -11,10 +11,17 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 
 import com.ryzko.nibu.R
 import com.ryzko.nibu.model.uiobjects.HomeListObject
 import com.ryzko.nibu.model.adapters.DailyRoutinesListAdapter
+import com.ryzko.nibu.model.user.UserData
+import com.ryzko.nibu.model.utils.DateParseUtils
+import kotlinx.android.synthetic.main.fragment_dashboard_home.*
+import org.joda.time.DateTime
+import org.joda.time.Weeks
+import java.time.DateTimeException
 
 /**
  * A simple [Fragment] subclass.
@@ -43,17 +50,24 @@ class DashboardDailyRoutinesFragment : Fragment() {
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Glide.with(this).load(UserData.selectedBaby.avatar).into(image_baby_avatar)
+        text_baby_name.text = UserData.selectedBaby.name
+        val birthday = DateParseUtils.getDateTime(UserData.selectedBaby.birth_date, DateParseUtils.YYYYMMDD_HHMMSS)
+        val weekNo = Weeks.weeksBetween(birthday, DateTime.now()).weeks
+        text_baby_birth_date.text = String.format(resources.getQuantityString(R.plurals.number_of_weeks, weekNo, DateParseUtils.getString(birthday, DateParseUtils.ddMMMyyyy), weekNo))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view:View = inflater.inflate(R.layout.fragment_dashboard_home, container, false)
-        val list:List<HomeListObject> = listOf(HomeListObject("food"), HomeListObject("diaper"), HomeListObject("sleep"), HomeListObject("play"), HomeListObject("walk"))
+        val view: View = inflater.inflate(R.layout.fragment_dashboard_home, container, false)
+        val list: List<HomeListObject> = listOf(HomeListObject("food"), HomeListObject("diaper"), HomeListObject("sleep"), HomeListObject("play"), HomeListObject("walk"))
         val adapter = DailyRoutinesListAdapter(list)
-        var grid:RecyclerView = view.findViewById(R.id.home_grid)
+        val grid: RecyclerView = view.findViewById(R.id.home_grid)
 
         grid.layoutManager = LinearLayoutManager(context)
         grid.adapter = adapter
-
 
 
         return view
@@ -70,7 +84,6 @@ class DashboardDailyRoutinesFragment : Fragment() {
         super.onAttach(context)
         if (context is OnFragmentInteractionListener) {
             mListener = context
-
 
 
         } else {

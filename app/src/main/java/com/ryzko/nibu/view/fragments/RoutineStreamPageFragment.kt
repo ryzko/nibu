@@ -4,11 +4,19 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ryzko.nibu.R
-import com.ryzko.nibu.model.adapters.RoutineStreamViewpagerAdapter
+import com.ryzko.nibu.model.activities.ActivityDayData
+import com.ryzko.nibu.model.adapters.ActivityRoutineAdapter
+import com.ryzko.nibu.model.events.ActivitiesResultEvent
+import com.ryzko.nibu.model.events.RxBus
+import com.ryzko.nibu.model.events.registerInBus
+import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
+import com.ryzko.nibu.model.user.UserData
+import kotlinx.android.synthetic.main.fragment_routine_stream_page.*
 
 
 /**
@@ -26,21 +34,65 @@ class RoutineStreamPageFragment : Fragment() {
     private var mParam2: String? = null
 
     private var mListener: OnFragmentInteractionListener? = null
+    private var activityList: MutableList<ActivityRoutineObjectData>? = null
 
-    private lateinit var streamObject: RoutineStreamViewpagerAdapter.DayData
+    private var thisView:View? = null
 
-    fun updateData(obj:RoutineStreamViewpagerAdapter.DayData){
-        streamObject = obj;
+
+    private lateinit var activityAdapter: ActivityRoutineAdapter
+
+    fun updateData(data: ActivityDayData?){
+
+        activityList = data?.activityList
+
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    fun initData(){
+        if(activityList!=null && activitiesRecyclerView!=null){
+            activityAdapter = ActivityRoutineAdapter(activityList!!)
+            activitiesRecyclerView.layoutManager = LinearLayoutManager(this.context)
+            activitiesRecyclerView?.adapter = activityAdapter
+            activityAdapter.notifyDataSetChanged()
+        }
+
+    }
+
+    fun setVisibility(){
+        if(thisView == null) return
+
+        if(activityList==null){
+            noDataText.visibility = View.VISIBLE
+            activitiesRecyclerView.visibility = View.GONE
+            iconEmpty?.visibility = View.VISIBLE
+        }else{
+            noDataText.visibility = View.GONE
+            activitiesRecyclerView.visibility = View.VISIBLE
+            iconEmpty?.visibility = View.GONE
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setVisibility()
+        initData()
+        layout_swipe_refresh.setOnRefreshListener {
+            UserData.activityDataService.getAllActivitiesRoutines()
+
+            RxBus.observe<ActivitiesResultEvent>().subscribe {
+                activityAdapter.notifyDataSetChanged()
+                layout_swipe_refresh.isRefreshing = false
+            }.registerInBus(this)
+
+
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_routine_stream_page, container, false)
+        thisView = inflater.inflate(R.layout.fragment_routine_stream_page, container, false)
+
+        return thisView
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -49,6 +101,7 @@ class RoutineStreamPageFragment : Fragment() {
             mListener!!.onFragmentInteraction(uri)
         }
     }
+
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -61,6 +114,7 @@ class RoutineStreamPageFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
+        RxBus.unregister(this)
         mListener = null
     }
 

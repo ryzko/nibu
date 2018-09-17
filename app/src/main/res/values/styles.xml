@@ -13,6 +13,7 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowActionBar">true</item>
         <item name="android:statusBarColor">@color/nibu_gray</item>
+
     </style>
 
     <!-- Splash Screen theme. -->
@@ -22,17 +23,38 @@
 
     <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
 
-        <item name="android:background">@color/nibu_toolbar_white</item>
-        <item name="android:colorBackground">@color/nibu_toolbar_white</item>
-        <item name="colorPrimary">@color/nibu_toolbar_white</item>
-        <item name="android:textColorSecondary">@color/nibu_toolbar_white</item>
+        <item name="android:background">@color/nibu_background</item>
+        <item name="android:colorBackground">@color/nibu_background</item>
+        <item name="colorPrimary">@color/nibu_background</item>
+        <item name="android:textColorSecondary">@color/nibu_background</item>
         <item name="theme">@style/NibuToolbarTheme</item>
+
     </style>
 
     <style name="NibuToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="android:textColorPrimary">@color/nibu_gray_dark</item>
-        <item name="colorControlNormal">@color/nibu_toolbar_white</item>
-        <item name="colorControlHighlight">@color/nibu_toolbar_white</item>
+        <item name="android:textColorPrimary">@color/nibu_background</item>
+        <item name="colorControlNormal">@color/nibu_background</item>
+        <item name="colorControlHighlight">@color/nibu_background</item>
     </style>
+
+    <style name="TextAppearance.Widget.Event.Toolbar.Title" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <!--Any text styling can be done here-->
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ToolbarTitleTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionMode.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="fontPath">fonts/Lato-BoldItalic.ttf</item>
+    </style>
+
+
+    <style name="PickerDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/nibu_gray_200</item>
+        <item name="colorPrimaryDark">@color/nibu_gray</item>
+        <item name="colorAccent">@color/nibu_gray</item>
+    </style>
+
+
 
 </resources>

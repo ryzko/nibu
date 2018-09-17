@@ -1,106 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:ignore="MissingPrefix"
-    tools:layout_editor_absoluteY="25dp">
+    tools:context=".view.activities.RoutineStreamActivity"
+    tools:ignore="MissingPrefix">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/toolbar_height"
-        android:background="@null"
-        android:elevation="0dp"
-        android:theme="@style/ToolbarTheme">
-<android.support.constraint.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+        android:layout_height="150dp"
+        android:background="@color/nibu_background"
+        android:fitsSystemWindows="true">
 
-    <ImageButton
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginTop="8dp"
-        android:background="@null"
-        android:src="@drawable/ic_event_black_24dp"
-        android:tint="@color/nibu_accent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</android.support.constraint.ConstraintLayout>
-    </android.support.v7.widget.Toolbar>
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/nibu_background"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax">
 
-    <com.ryzko.nibu.view.components.CustomSmartTabLayout
-        android:id="@+id/recyclerTabLayout"
-        stl_customTabTextLayoutId="@layout/layout_smart_tab_text"
-        stl_customTabTextViewId="@id/smartTabTextView"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:stl_defaultTabBackground="?android:attr/selectableItemBackground"
-        app:stl_defaultTabTextAllCaps="false"
-        app:stl_defaultTabTextHorizontalPadding="32dp"
-        app:stl_defaultTabTextMinWidth="120dp"
-        app:stl_defaultTabTextSize="14sp"
-        app:stl_dividerThickness="1dp"
-        app:stl_drawDecorationAfterTab="true"
-        app:stl_indicatorAlwaysInCenter="true"
-        app:stl_indicatorColor="@color/colorAccent"
-        app:stl_indicatorCornerRadius="4dp"
-        app:stl_indicatorInterpolation="smart"
-        app:stl_indicatorThickness="4dp"
-        app:stl_indicatorWithoutPadding="false"
-        app:stl_overlineThickness="0dp"
-        app:stl_underlineThickness="1dp" />
+                <TextView
+                    android:id="@+id/text_page_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="64dp"
+                    android:text="TextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar_height"
+                android:elevation="1dp"
+                android:theme="@style/ToolbarTheme"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="scroll|enterAlways">
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageButton
+                        android:id="@+id/button_select_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/nibu_transparent"
+                        android:src="@drawable/ic_event_black_24dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/viewpager_activities"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/nibu_white"
+        android:layout_height="match_parent"
+        android:background="@color/nibu_background"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerTabLayout" />
+        app:layout_constraintStart_toStartOf="@id/appbar_layout"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-    <com.github.clans.fab.FloatingActionMenu
-        android:id="@+id/menu_breast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        fab:menu_colorNormal="@color/nibu_accent">
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pagerstrip_activities"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="top"
+            android:background="@color/nibu_background"
+            android:clickable="true"
+            android:elevation="1dp"
+            android:focusable="auto"
+            android:textColor="@color/nibu_gray">
 
+        </android.support.v4.view.PagerTabStrip>
 
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_solid_white"
-            app:fab_colorNormal="@color/nibu_accent"
-            fab:fab_label="Solid meal"
-            fab:fab_size="mini" />
+    </android.support.v4.view.ViewPager>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add_activity"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:layout_anchor="@id/viewpager_activities"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        fab:srcCompat="@drawable/fab_add" />
 
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_formula_white"
-            app:fab_colorNormal="@color/nibu_accent"
-            fab:fab_label="Formula milk"
-            fab:fab_size="normal" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_breastfeed_simple"
-            app:fab_colorNormal="@color/nibu_accent"
-            fab:fab_label="Breast feeding"
-            fab:fab_size="normal" />
-    </com.github.clans.fab.FloatingActionMenu>
-
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>
