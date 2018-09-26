@@ -2,10 +2,10 @@
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".view.activities.RoutineStreamActivity"
     tools:ignore="MissingPrefix">
 
@@ -24,34 +24,39 @@
             app:contentScrim="@color/nibu_background"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/toolbar_height"
                 android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax">
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <TextView
                     android:id="@+id/text_page_date"
                     android:layout_width="wrap_content"
-                    android:layout_height="16dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="64dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:text="@string/"
+                    android:textColor="@color/nibu_secondary_accent"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar_height"
-                android:elevation="1dp"
-                android:theme="@style/ToolbarTheme"
                 app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways">
+                android:theme="@style/ToolbarTheme">
+
                 <android.support.constraint.ConstraintLayout
+                    android:id="@+id/toolbar_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -60,10 +65,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_marginTop="8dp"
                         android:background="@color/nibu_transparent"
-                        android:src="@drawable/ic_event_black_24dp"
+                        android:src="@drawable/ic_date_to_dark"
+                        android:tint="@color/nibu_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -84,26 +90,32 @@
 
         <android.support.v4.view.PagerTabStrip
             android:id="@+id/pagerstrip_activities"
+            fontPath="fonts/GoogleSans-Regular.ttf"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_gravity="top"
             android:background="@color/nibu_background"
             android:clickable="true"
-            android:elevation="1dp"
-            android:focusable="auto"
+            android:focusable="true"
             android:textColor="@color/nibu_gray">
 
         </android.support.v4.view.PagerTabStrip>
 
     </android.support.v4.view.ViewPager>
-    <android.support.design.widget.FloatingActionButton
+
+
+    <com.aniket.mutativefloatingactionbutton.MutativeFab
         android:id="@+id/fab_add_activity"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        app:layout_anchor="@id/viewpager_activities"
-        app:layout_anchorGravity="bottom|right|end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        app:fabIcon="@drawable/ic_plus"
+        app:fabText="Add daily routine"
+        android:layout_alignParentBottom="true"
+        app:fabBackgroundColor="@android:color/white"
+        app:fabTextColor="@color/nibu_secondary_accent"
+        android:layout_gravity="bottom|end"
         android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        fab:srcCompat="@drawable/fab_add" />
+        android:layout_marginEnd="16dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

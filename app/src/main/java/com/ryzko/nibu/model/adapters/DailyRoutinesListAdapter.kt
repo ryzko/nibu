@@ -43,23 +43,23 @@ class DailyRoutinesListAdapter(private val list:List<HomeListObject>): RecyclerV
             var title:String = ""
             when(data.type){
                 "food" -> {
-                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.baby_bottle_96px)
+                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.ic_baby_bottle_light)
                     title = itemView.resources.getString(R.string.routine_list_feeding)
                 }
                 "sleep" -> {
-                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.crib_96px)
+                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.ic_sleep_light)
                     title = itemView.resources.getString(R.string.routine_list_sleep)
                 }
                 "diaper" -> {
-                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.nappy_96px)
+                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.ic_nappy_light)
                     title = itemView.resources.getString(R.string.routine_list_diapers)
                 }
                 "play" -> {
-                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.sandbox_96px)
+                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.ic_breastfeeding_light)
                     title = itemView.resources.getString(R.string.routine_list_physical_activity)
                 }
                 "walk" -> {
-                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.mother_96px)
+                    passImg = ContextCompat.getDrawable(itemView.context,R.drawable.ic_sleep_light)
                     title = itemView.resources.getString(R.string.routine_list_walks)
                 }
             }

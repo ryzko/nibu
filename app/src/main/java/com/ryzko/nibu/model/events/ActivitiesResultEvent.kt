@@ -8,5 +8,4 @@ import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
  * http://ryzko.com
  */
 
-class ActivitiesResultEvent (val list: MutableList<ActivityRoutineObjectData>){
-}
+class ActivitiesResultEvent (val list: MutableList<ActivityRoutineObjectData>)

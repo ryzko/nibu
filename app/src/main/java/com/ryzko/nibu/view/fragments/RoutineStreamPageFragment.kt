@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,12 @@ import com.ryzko.nibu.R
 import com.ryzko.nibu.model.activities.ActivityDayData
 import com.ryzko.nibu.model.adapters.ActivityRoutineAdapter
 import com.ryzko.nibu.model.events.ActivitiesResultEvent
-import com.ryzko.nibu.model.events.RxBus
-import com.ryzko.nibu.model.events.registerInBus
+import com.ryzko.nibu.model.events.RoutinesScrollEvent
 import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
 import com.ryzko.nibu.model.user.UserData
+import com.ryzko.rxminibus.RxMiniBus
+import com.ryzko.rxminibus.registerWith
+import kotlinx.android.synthetic.main.activity_routine_stream.*
 import kotlinx.android.synthetic.main.fragment_routine_stream_page.*
 
 
@@ -48,13 +51,18 @@ class RoutineStreamPageFragment : Fragment() {
     }
 
     fun initData(){
-        if(activityList!=null && activitiesRecyclerView!=null){
+        if(activityList!=null && recycler_view_activities!=null){
             activityAdapter = ActivityRoutineAdapter(activityList!!)
-            activitiesRecyclerView.layoutManager = LinearLayoutManager(this.context)
-            activitiesRecyclerView?.adapter = activityAdapter
+            recycler_view_activities.layoutManager = LinearLayoutManager(this.context)
+            recycler_view_activities?.adapter = activityAdapter
             activityAdapter.notifyDataSetChanged()
+
         }
 
+    }
+
+    fun getRecyclerView():RecyclerView?{
+        return recycler_view_activities
     }
 
     fun setVisibility(){
@@ -62,11 +70,11 @@ class RoutineStreamPageFragment : Fragment() {
 
         if(activityList==null){
             noDataText.visibility = View.VISIBLE
-            activitiesRecyclerView.visibility = View.GONE
+            recycler_view_activities.visibility = View.GONE
             iconEmpty?.visibility = View.VISIBLE
         }else{
             noDataText.visibility = View.GONE
-            activitiesRecyclerView.visibility = View.VISIBLE
+            recycler_view_activities.visibility = View.VISIBLE
             iconEmpty?.visibility = View.GONE
         }
     }
@@ -77,14 +85,26 @@ class RoutineStreamPageFragment : Fragment() {
         initData()
         layout_swipe_refresh.setOnRefreshListener {
             UserData.activityDataService.getAllActivitiesRoutines()
-
-            RxBus.observe<ActivitiesResultEvent>().subscribe {
-                activityAdapter.notifyDataSetChanged()
-                layout_swipe_refresh.isRefreshing = false
-            }.registerInBus(this)
-
-
         }
+
+        RxMiniBus.observe<ActivitiesResultEvent>().subscribe {
+            activityAdapter = ActivityRoutineAdapter(it.list)
+            activityAdapter.notifyDataSetChanged()
+            layout_swipe_refresh.isRefreshing = false
+        }.registerWith(this)
+
+        recycler_view_activities.addOnScrollListener(object:RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0)
+                {
+                    RxMiniBus.post(RoutinesScrollEvent(true))
+                }else{
+                    RxMiniBus.post(RoutinesScrollEvent(false))
+                }
+            }
+
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -114,7 +134,7 @@ class RoutineStreamPageFragment : Fragment() {
 
     override fun onDetach() {
         super.onDetach()
-        RxBus.unregister(this)
+        RxMiniBus.unregister(this)
         mListener = null
     }
 

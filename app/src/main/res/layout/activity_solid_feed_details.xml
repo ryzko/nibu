@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activities.ActivitySolidFeedDetails">
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/nibu_background"
+            android:fitsSystemWindows="true"
+            app:elevation="0dp">
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:fitsSystemWindows="true"
+                app:contentScrim="@color/nibu_background"
+                app:expandedTitleMarginEnd="80dp"
+                app:expandedTitleMarginStart="8dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbar_height"
+                    android:elevation="1dp"
+                    android:theme="@style/ToolbarTheme"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:titleTextAppearance="@style/TextAppearance.Widget.Event.Toolbar.Title"
+                    app:titleTextColor="@color/nibu_gray">
+
+
+                    <ImageButton
+                        android:id="@+id/backButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_close_black_24dp" />
+
+                    <ImageButton
+                        android:id="@+id/saveButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginTop="0dp"
+                        android:background="@null"
+                        android:src="@drawable/ic_done_black_24dp" />
+
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:gravity="fill_vertical"
+                        android:text="@string/activity_add_breast_feeding"
+                        android:textColor="@color/nibu_gray"
+                        android:textSize="18sp"
+                        tools:ignore="MissingPrefix" />
+
+
+                </android.support.v7.widget.Toolbar>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="56dp"
+                        android:text="@string/activity_add_breast_feeding"
+                        android:textColor="@color/nibu_gray"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        tools:ignore="MissingPrefix" />
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="54dp"
+            android:fillViewport="true"
+            app:layout_anchor="@id/appbar_layout"
+            app:layout_anchorGravity="bottom">
+
+            <android.support.constraint.ConstraintLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:id="@+id/linearLayout3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.ryzko.nibu.view.components.TextViewButton
+                        android:id="@+id/text_start_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight=".5"
+                        android:elevation="1dp">
+
+                    </com.ryzko.nibu.view.components.TextViewButton>
+
+                    <com.ryzko.nibu.view.components.TextViewButton
+                        android:id="@+id/text_start_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight=".5">
+
+                    </com.ryzko.nibu.view.components.TextViewButton>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                    <com.ryzko.nibu.view.components.TextViewButton
+                        android:id="@+id/text_end_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight=".5">
+
+                    </com.ryzko.nibu.view.components.TextViewButton>
+
+                    <com.ryzko.nibu.view.components.TextViewButton
+                        android:id="@+id/text_end_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight=".5">
+
+                    </com.ryzko.nibu.view.components.TextViewButton>
+
+                </LinearLayout>
+
+                <com.ryzko.nibu.view.components.TextViewButton
+                    android:id="@+id/text_breast_side"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:elevation="0dp"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                </com.ryzko.nibu.view.components.TextViewButton>
+
+                <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
+                    android:id="@+id/commentBox"
+                    fontPath="fonts/Lato-BoldItalic.ttf"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_weight=".5"
+                    android:elevation="1dp"
+                    app:helperTextColor="@color/nibu_gray"
+                    app:labelText="Write a comment : "
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_weight=".5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_breast_side"
+                    app:panelBackgroundColor="@color/nibu_white"
+                    app:primaryColor="@color/colorAccent"
+                    app:secondaryColor="@color/nibu_gray"
+                    app:useDenseSpacing="false">
+
+                    <studio.carbonylgroup.textfieldboxes.ExtendedEditText
+                        android:id="@+id/commentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/nibu_gray" />
+
+                </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/slidingDatePicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

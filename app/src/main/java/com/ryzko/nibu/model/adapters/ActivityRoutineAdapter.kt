@@ -9,9 +9,7 @@ import com.ryzko.nibu.R
 import com.ryzko.nibu.model.activities.ActivityRoutineType
 
 import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
-import junit.framework.TestSuite.warning
 import android.view.animation.AnimationUtils
-import com.ryzko.nibu.Nibu
 import com.ryzko.nibu.model.utils.DateParseUtils
 import kotlinx.android.synthetic.main.cardview_activity_item.view.*
 import org.joda.time.Duration
@@ -79,7 +77,7 @@ class ActivityRoutineAdapter(var list: MutableList<ActivityRoutineObjectData>) :
             itemView.text_activity_time.text = DateParseUtils.getString(date, DateParseUtils.HHMM)
             itemView.text_activity_end_time.text = DateParseUtils.getString(dateEnd, DateParseUtils.HHMM)
             itemView.text_activity_duration.text = getDuration(data)
-            itemView.text_activity_date.text = DateParseUtils.getString(date, DateParseUtils.ddMMMyyyy)
+            //itemView.text_activity_date.text = DateParseUtils.getString(date, DateParseUtils.ddMMMyyyy)
 
             when (data.item_kind) {
                 "left" -> {
@@ -111,7 +109,6 @@ class ActivityRoutineAdapter(var list: MutableList<ActivityRoutineObjectData>) :
             itemView.setOnClickListener {
                 Log.e("ItemClicked", itemView.text_activity_time.text.toString())
             }
-            warning("view: " + index.toString())
         }
 
         private fun getDuration(data: ActivityRoutineObjectData): String {

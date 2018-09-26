@@ -10,7 +10,7 @@ import io.reactivex.subjects.PublishSubject
 /**
  * Simple Rx Event RxBus
  */
-object RxBus {
+object RxBusX {
 
     /**
      * Used to hold all subscriptions for RxBus events and unsubscribe properly when needed.
@@ -68,5 +68,5 @@ object RxBus {
  * @param subscriber subscriber object that owns this subscription
  */
 fun Disposable.registerInBus(subscriber: Any) {
-    RxBus.register(subscriber, this)
+    RxBusX.register(subscriber, this)
 }

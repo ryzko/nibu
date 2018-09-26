@@ -9,10 +9,6 @@
     </item>
 <item>
 
-    <bitmap
-        android:gravity="center"
-        android:src="@drawable/nibu_logo" />
-
 
 </item>
 

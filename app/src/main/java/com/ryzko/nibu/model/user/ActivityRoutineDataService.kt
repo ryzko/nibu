@@ -4,10 +4,9 @@ import com.ryzko.nibu.Nibu
 import com.ryzko.nibu.model.activities.ActivityDayData
 import com.ryzko.nibu.model.api.ApiManager
 import com.ryzko.nibu.model.events.ActivitiesResultEvent
-import com.ryzko.nibu.model.events.RxBus
-import com.ryzko.nibu.model.events.registerInBus
 import com.ryzko.nibu.model.rest.routines.ActivityRoutineObjectData
 import com.ryzko.nibu.model.utils.DateParseUtils
+import com.ryzko.rxminibus.RxMiniBus
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -80,7 +79,7 @@ class ActivityRoutineDataService() {
 
     private fun onGetActivities(list: MutableList<ActivityRoutineObjectData>){
         flatList = list
-        RxBus.send(ActivitiesResultEvent(list))
+        RxMiniBus.post(ActivitiesResultEvent(list))
 
     }
 

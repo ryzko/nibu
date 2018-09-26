@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorAccent">#e91e63</color>
+    <color name="colorAccent">@color/nibu_accent</color>
 
-    <color name="colorDarkAccent">#9b004e</color>
+    <color name="colorDarkAccent">@color/nibu_gray</color>
 
 
-    <color name="nibu_toolbar_white">#FFFFFF</color>
     <color name="nibu_white">#ffffff</color>
-    <color name="nibu_accent">#f50057</color>
-    <color name="nibu_gray">#455A64</color>
+    <color name="nibu_accent">#d81b60</color>
+    <color name="nibu_secondary_accent">#9c27b0</color>
+    <color name="nibu_gray">#263238</color>
     <color name="nibu_gray_light">#455a64</color>
     <color name="nibu_gray_dark">#000000</color>
     <color name="nibu_background">#FFFFFF</color>
-    <color name="nibu_gray_divider">#cfd8dc</color>
-    <color name="nibu_gray_50">#eceff1</color>
     <color name="nibu_gray_200">#b0bec5</color>
-    <color name="nibu_gray_500">#78909c</color>
     <color name="nibu_transparent">#00000000</color>
+    <color name="nibu_separator">#ECEFF1</color>
 
 
 </resources>

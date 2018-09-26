@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_add_breastfeeding"
+        android:icon="@drawable/ic_breastfeeding_dark"
+        android:title="@string/menu_add_breastfeeding" />
+
+    <item
+        android:id="@+id/menu_add_formula"
+        android:icon="@drawable/ic_baby_bottle_dark"
+        android:title="@string/menu_add_formula" />
+
+    <item
+        android:id="@+id/menu_add_solids"
+        android:icon="@drawable/ic_solid_food_dark"
+        android:title="@string/menu_add_solids" />
+
+    <item
+        android:id="@+id/menu_add_pump"
+        android:icon="@drawable/ic_pump_dark"
+        android:title="@string/menu_add_pump" />
+
+    <item
+        android:id="@+id/menu_add_medicines"
+        android:icon="@drawable/ic_medicines_dark"
+        android:title="@string/menu_add_medicines" />
+
+    <item
+        android:id="@+id/menu_add_activity"
+        android:icon="@drawable/ic_activity_dark"
+        android:title="@string/menu_add_activity" />
+
+    <item
+        android:id="@+id/menu_add_sleep"
+        android:icon="@drawable/ic_sleep_dark"
+        android:title="@string/menu_add_sleep" />
+
+    <item
+        android:id="@+id/menu_add_nappy"
+        android:icon="@drawable/ic_nappy_dark"
+        android:title="@string/menu_add_nappy" />
+</menu>

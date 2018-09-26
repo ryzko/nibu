@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">false</item>
         <item name="colorPrimary">@color/colorDarkAccent</item>
         <item name="colorPrimaryDark">@color/nibu_gray_light</item>
         <item name="colorAccent">@color/nibu_accent</item>
@@ -17,9 +18,7 @@
     </style>
 
     <!-- Splash Screen theme. -->
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
+
 
     <style name="ToolbarTheme" parent="Widget.AppCompat.Toolbar">
 
@@ -41,11 +40,6 @@
         <!--Any text styling can be done here-->
         <item name="android:textStyle">italic</item>
         <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="ToolbarTitleTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionMode.Title">
-        <item name="android:textSize">20sp</item>
-        <item name="fontPath">fonts/Lato-BoldItalic.ttf</item>
     </style>
 
 

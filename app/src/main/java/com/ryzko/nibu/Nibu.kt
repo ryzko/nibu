@@ -7,7 +7,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import com.joanzapata.iconify.fonts.SimpleLineIconsModule
 import com.joanzapata.iconify.Iconify
 import com.joanzapata.iconify.fonts.IoniconsModule
-import com.ryzko.nibu.model.events.RxBus
+
 
 
 /**
@@ -51,7 +51,7 @@ class Nibu: Application() {
 
 
         CalligraphyConfig.initDefault(CalligraphyConfig.Builder()
-                .setDefaultFontPath("fonts/Roboto-Regular.ttf")
+                .setDefaultFontPath("fonts/GoogleSans-Regular.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build())
 
